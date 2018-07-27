@@ -16,8 +16,12 @@ app.use(bodyParser.json());
 
 app.use(express.static(`${__dirname}/../client/dist`));
 
-// res.data.items[0] will access the first book on search of a title
-// with a proper title this works well.
+// skeleton of patch request for updating favrite title list of user
+app.patch('', (req, res) => {
+
+});
+
+
 app.get('/genreTest', (req, res) => {
   helpers.googleGenre('NonFiction')
     .then((response) => {
@@ -46,6 +50,7 @@ app.get('/googleDataTest', (req, response) => {
     .then((res) => {
       // console.log(res.data.items[0]);
       const info = res.data.items[0].volumeInfo;
+      const title = info.title;
       const longDescript = info.description; // full description
       const genres = info.categories; // array of genre strings, often 1 element
       const rating = +info.averageRating;
@@ -58,11 +63,12 @@ app.get('/googleDataTest', (req, response) => {
       helpers.libThingISBN(ISBN10)
         .then((libThings) => {
           const libThingRating = (+(libThings.data.split('<rating>')[1].slice(0, 1))) / 2;
-          helpers.goodReadsData('Green Eggs and Ham')
+          helpers.goodReadsData('The Lord Of The Rings: The Two Towers')
             .then((goodReads) => {
               const gReadsRating = goodReads.data.split('<average_rating>')[1].slice(0, 4);
               const aggregateRating = Math.floor(+rating + +libThingRating + +gReadsRating) / 3;
               response.json({
+                title,
                 longDescript,
                 genres,
                 rating,
@@ -78,6 +84,7 @@ app.get('/googleDataTest', (req, response) => {
     })
     .catch(err => console.log(err));
 });
+
 
 // res.data.items[0] will access the first book on search of a title. with a proper title this works well.
 app.get('/googleData', (req, response) => {
