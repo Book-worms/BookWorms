@@ -18,7 +18,7 @@ app.use(express.static(`${__dirname}/../client/dist`));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // create application/json parser
-var jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json()
 
 // pass the passport middleware
 app.use(passport.initialize());
@@ -51,7 +51,7 @@ app.post('/addRating', jsonParser, (req, res) => {
   // console.log(req, 'req');
   const rating = req.body;
   console.log(rating, 'rating in server');
-  db.addRating('Lord of the Flies', 5, (err, doc) => {
+  db.addRating('Lord of the Flies', rating, (err, doc) => {
     if (err) {
       console.log(err);
     } else {
@@ -149,7 +149,7 @@ app.get('/googleData', (req, response) => {
           helpers.goodReadsData(query)
             .then((goodReads) => {
               const gReadsRating = +goodReads.data.split('<average_rating>')[1].slice(0, 4);
-              const aggregateRating = Math.round(+rating + +libThingRating + +gReadsRating) / 3;
+              const aggregateRating = Math.round(+rating + +libThingRating + +gReadsRating + 3) / 4;
               db.saveBook({
                 title,
                 longDescript,
@@ -158,7 +158,7 @@ app.get('/googleData', (req, response) => {
                 rating,
                 libThingRating,
                 gReadsRating,
-                userRating: 2.75,
+                userRating: 3.0,
                 coverImage,
               }, (err) => {
                 if (err) { console.log(err); } else {
