@@ -59,4 +59,4 @@ View the project roadmap [here](https://github.com/Book-worms/BookWorms/issues)
 
 ## Contributing
 
-See [CONTRIBUTING.md](/CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](/_CONTRIBUTING.md) for contribution guidelines.
