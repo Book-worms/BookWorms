@@ -3,7 +3,7 @@
 ```
     google= google_client_secret',
     goodReads= goodreads_secret,
-    MONGOLIN= mongo_uri,
+    MONGOLINK= mongo_uri,
     libThing= libThing_secret,
     jwtSecret= jwt_secret,
 ```
