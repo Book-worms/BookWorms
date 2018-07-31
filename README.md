@@ -49,10 +49,8 @@ Ensure your environment variables are setup correctly. View the environment docs
 ### NPM Scripts
 
 ```sh
-npm run dev:server # start server with nodemon
-npm run dev:client # start client webpack server
-npm run test:server # run server tests
-npm run test:client # run client tests
+npm run server-dev:server # start server with nodemon
+npm run react-dev:client # start client webpack server
 ```
 
 ### Roadmap
@@ -61,4 +59,4 @@ View the project roadmap [here](https://github.com/Book-worms/BookWorms/issues)
 
 ## Contributing
 
-See [CONTRIBUTING.md](/docs/CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](/CONTRIBUTING.md) for contribution guidelines.
