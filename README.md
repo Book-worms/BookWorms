@@ -44,7 +44,7 @@ npm install
 
 ### Environment Variables
 
-Ensure your environment variables are setup correctly. View the environment docs [here](/docs/Env.md)
+Ensure your environment variables are setup correctly. View the environment docs [here](/env.md)
 
 ### NPM Scripts
 
