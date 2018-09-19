@@ -11,7 +11,7 @@ mongoose.connect(MONGOLINK, {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   // deprecation warning fix12
-  useNewUrlParser: true,
+  // useNewUrlParser: true,
   useMongoClient: true,
 });
 
