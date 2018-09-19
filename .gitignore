@@ -26,6 +26,7 @@ config.js
 
 # Config
 config.js
+.env
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
