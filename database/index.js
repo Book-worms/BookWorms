@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const MONGOLINK = require('../config.js');
 const config = require('../config');
 
-mongoose.connect(MONGOLINK.MONGOLINK, { useMongoClient: true });
+mongoose.connect(MONGOLINK, { useMongoClient: true });
 // mongoose.connect(process.env.MLAB);
 // plug in the promise library:
 mongoose.Promise = global.Promise;
