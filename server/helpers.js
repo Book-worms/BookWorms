@@ -1,10 +1,10 @@
 /* eslint-disable prefer-destructuring */
 const axios = require('axios');
-// const config = require('../config.js');
+const config = require('../config.js');
 
-const goodReads = process.env.GOODREADS_KEY;
-const google = process.env.GOOGLE;
-const libThing = process.env.LIBRARYTHING;
+const goodReads = config.goodReads;
+const google = config.google;
+const libThing = config.libThing;
 
 // Finally got a response thats useable from good reads!!! format below
 //  https://www.goodreads.com/book/title.xml?&key=API_KEY&title=where+the+wild+things+are
