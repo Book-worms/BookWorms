@@ -9,6 +9,7 @@ const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 const helpers = require('./helpers.js');
 const db = require('../database/index.js');
 
@@ -17,6 +18,8 @@ const app = express();
 app.use(express.static(`${__dirname}/../client/dist`));
 // tell the app to parse HTTP body messages
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+
 
 // create application/json parser
 const jsonParser = bodyParser.json();

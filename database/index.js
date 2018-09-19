@@ -149,6 +149,7 @@ const saveUser = (name, pass) => {
   });
   user.save((error) => {
     if (error) {
+      console.log('ERROR SAVING USER');
       console.error(error);
     }
   });
