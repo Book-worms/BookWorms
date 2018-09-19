@@ -1,18 +1,22 @@
-
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const MONGOLINK = require('../config.js');
+const MONGOLINK = require('../config/config').MONGOLINK;
 const config = require('../config');
+
 
 // mongoose.connect(MONGOLINK, { useMongoClient: true });
 mongoose.connect(process.env.MLAB);
+
 // plug in the promise library:
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 
+
 db.on('error', () => {
+  console.log('here', MONGOLINK);
   console.log('mongoose connection error');
 });
 
@@ -196,6 +200,14 @@ const passportValidate = (un, pw) => {
       return done(null, token, data);
     });
   });
+};
+
+const booksquirmSchema = mongoose.Schema({
+
+});
+
+const booksquirm = {
+
 };
 module.exports = {
   comparePassword,

@@ -8,6 +8,7 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const helpers = require('./helpers.js');
 const db = require('../database/index.js');
 require('dotenv').config();
@@ -37,6 +38,7 @@ app.use('/api', authCheckMiddleware);
 const authRoutes = require('./routes/auth');
 
 app.use('/auth', authRoutes);
+app.use(morgan('tiny'));
 
 
 app.post('/addRating', jsonParser, (req, res) => {
@@ -265,8 +267,8 @@ app.get('/goodreads', (req, res) => {
 
 
 // Set Port, hosting services will look for process.env.PORT
-app.set('port', (process.env.PORT || 3000));
 
+app.set('port', (process.env.PORT || 80));
 // start the server
 app.listen(app.get('port'), () => {
   console.log(`Server is running on port ${app.get('port')}`);
