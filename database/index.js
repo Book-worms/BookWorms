@@ -1,13 +1,13 @@
 
-
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const MONGOLINK = require('../config.js');
+// const MONGOLINK = require('../config.js');
 const config = require('../config');
 
-mongoose.connect(MONGOLINK.MONGOLINK, { useMongoClient: true });
+// mongoose.connect(MONGOLINK.MONGOLINK, { useMongoClient: true });
+mongoose.connect(process.env.MLAB);
 // plug in the promise library:
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
@@ -138,7 +138,7 @@ const saveUser = (name, pass) => {
   user.save((error) => {
     if (error) {
       console.error(error);
-    } 
+    }
   });
 };
 const findUser = (username, callback) => {
