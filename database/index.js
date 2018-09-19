@@ -7,17 +7,9 @@ const MONGOLINK = require('../config/config').MONGOLINK;
 const config = require('../config');
 
 
-mongoose.connect(MONGOLINK, {
-  keepAlive: true,
-  reconnectTries: Number.MAX_VALUE,
-  // deprecation warning fix12
-  // useNewUrlParser: true,
-  useMongoClient: true,
-});
+// mongoose.connect(MONGOLINK, { useMongoClient: true });
+mongoose.connect(process.env.MLAB);
 
-
-// deprecation warning fix
-// mongoose.connect(process.env.MLAB);
 // plug in the promise library:
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
