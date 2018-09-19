@@ -264,7 +264,7 @@ app.get('/goodreads', (req, res) => {
 
 
 // Set Port, hosting services will look for process.env.PORT
-app.set('port', (process.env.PORT || 80));
+app.set('port', (3000 || 80));
 
 // start the server
 app.listen(app.get('port'), () => {
