@@ -1,10 +1,12 @@
 /* eslint-disable prefer-destructuring */
 const axios = require('axios');
-const config = require('../config');
 
-const goodReads = config.goodReads;
-const google = config.google;
-const libThing = config.libThing;
+const config = require('../config.js');
+require('dotenv').config();
+
+const goodReads = process.env.GOODREADS_KEY;
+const google = process.env.GOOGLE;
+const libThing = process.env.LIBRARYTHING;
 
 // Finally got a response thats useable from good reads!!! format below
 //  https://www.goodreads.com/book/title.xml?&key=API_KEY&title=where+the+wild+things+are
