@@ -8,6 +8,7 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const helpers = require('./helpers.js');
 const db = require('../database/index.js');
 
@@ -36,6 +37,7 @@ app.use('/api', authCheckMiddleware);
 const authRoutes = require('./routes/auth');
 
 app.use('/auth', authRoutes);
+app.use(morgan('tiny'));
 
 
 app.post('/addRating', jsonParser, (req, res) => {
