@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const MONGOLINK = require('../config/config').MONGOLINK;
+// const MONGOLINK = require('../config').MONGOLINK;
 const config = require('../config');
 
 
@@ -16,7 +16,7 @@ const db = mongoose.connection;
 
 
 db.on('error', () => {
-  console.log('here', MONGOLINK);
+  // console.log('here', MONGOLINK);
   console.log('mongoose connection error');
 });
 
