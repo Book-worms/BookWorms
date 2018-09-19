@@ -1,6 +1,6 @@
 const request = require('request');
 
-const createKeyWordForSearch = keyword => encodeURI(keyword);
+const createKeyWordForSearch = keyword => encodeURI(`${keyword} book`);
 
 const ebayPost = (keyWordSearch) => {
   const options = {
