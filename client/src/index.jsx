@@ -64,6 +64,19 @@ class App extends Component {
       openLibLink: null,
     };
 
+    //add function for axios call to ebay
+    this.ebaySearch = (title) => {
+      axios.get('/ebaybay', {
+        params: { title }
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+    }
+
     this.searchForBook = (title) => {
       axios.get('/googleData', {
         params: { title },
@@ -195,6 +208,8 @@ class App extends Component {
                     username={this.state.username}
                     openLibLink={this.state.openLibLink}
                     handleHomeLink={this.getTopRated.bind(this)}
+                    //add link for ebaySearch
+                    ebaySearch={this.ebaySearch.bind(this)}
                       
                   />
                   )}
