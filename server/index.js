@@ -202,6 +202,13 @@ app.get('/googleData', (req, response) => {
       const coverImage = info.imageLinks.thumbnail; // url to large format thumbnail
       const ISBN10 = info.industryIdentifiers[0].identifier;
       let ISBN13;
+      let ebaydata = null;
+
+      ebayHelpers.ebayPost(req.query.title).then((data) => {
+        ebaydata = data.data;
+      });
+
+
       if (info.industryIdentifiers[1]) {
         ISBN13 = info.industryIdentifiers[1].identifier;
       }
@@ -243,7 +250,9 @@ app.get('/googleData', (req, response) => {
                 userRating: 2.75,
                 aggregateRating,
                 ISBN13,
+                ebaydata,
               });
+              console.log(ebaydata);
             });
         });
     })
@@ -279,47 +288,3 @@ app.get('/goodreads', (req, res) => {
     })
     .catch(err => console.log('error line 273'));
 });
-
-
-// TEAM AMERICAIN IDOL WORK STARTS HERE //
-
-// app.post('/ebaybay',
-//   (request, response, body) => {
-//     console.log('APP POST');
-//     // console.log(request.body);
-//     const keyWordToEncode = 'scarface';
-//     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
-
-//     console.log(keyWordToEncode, keyWordEncoded);
-
-//     ebayHelpers.ebayPost(keyWordEncoded,
-//       (error) => {
-//         if (error) {
-//           // console.log('error inside ebaypost index.js: ', error);
-//           // console.log(error);
-//           // console.log('error inside post');
-//         } else {
-//           // console.log(response);
-//           const parsedBody = JSON.parse(response.body);
-//           // console.log('parsedBody:', parsedBody);
-//         }
-//       });
-//     response.send(201, 'OK');
-//     response.end();
-//   });
-app.get('/ebaybay',
-  (req, res) => {
-    const keyWordToEncode = req.body;
-    console.log(keyWordToEncode);
-    const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
-    console.log(keyWordEncoded);
-
-    ebayHelpers.ebayPost(keyWordEncoded,
-      (err, res) => {
-        if (err) {
-          console.log('ebayhelpers erro');
-        } else {
-          console.log('ebayhelpers success', res);
-        }
-      });
-  });

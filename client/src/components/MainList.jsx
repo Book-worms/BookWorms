@@ -33,65 +33,65 @@ class MainList extends React.Component {
                   </a>
                   <div className="btn-group-vertical" role="group" aria-label="...">
                     <button
-type="button"
-className="btn-group btn btn-primary btn-sm"
-role="group"
-aria-label="..."
+                      type="button"
+                      className="btn-group btn btn-primary btn-sm"
+                      role="group"
+                      aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}
                     >
-                      Bookworms 
-{' '}
-<span className="badge">{this.props.item.aggregateRating}</span>
+
+                      {' '}
+                      <span className="badge">{this.props.item.aggregateRating}</span>
                     </button>
                     <button
-type="button"
-className="btn-group btn btn-info btn-sm"
-role="group"
-aria-label="..."
+                      type="button"
+                      className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}
                     >
-                      Google Books 
+                      Google Books
 {' '}
-<span className="badge">{this.props.item.rating}</span>
+                      <span className="badge">{this.props.item.rating}</span>
                     </button>
                     <button
-type="button"
-className="btn-group btn btn-info btn-sm"
-role="group"
-aria-label="..."
+                      type="button"
+                      className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}
                     >
-                      Library Thing 
+                      Library Thing
 {' '}
-<span className="badge">{this.props.item.libThingRating}</span>
+                      <span className="badge">{this.props.item.libThingRating}</span>
                     </button>
                     <button
-type="button"
-className="btn-group btn btn-info btn-sm"
-role="group"
-aria-label="..."
+                      type="button"
+                      className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}
                     >
-                      GoodReads 
+                      GoodReads
 {' '}
-<span className="badge">{this.props.item.gReadsRating}</span>
+                      <span className="badge">{this.props.item.gReadsRating}</span>
                     </button>
                     <button
-type="button"
-className="btn-group btn btn-info btn-sm"
-role="group"
-aria-label="..."
+                      type="button"
+                      className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}
                     >
-                      User Rating 
+                      User Rating
 {' '}
-<span className="badge">{this.props.item.userRating}</span>
+                      <span className="badge">{this.props.item.userRating}</span>
                     </button>
                     <button
-type="button"
-className="btn-group btn btn-danger btn-sm"
-role="group"
-aria-label="..."
+                      type="button"
+                      className="btn-group btn btn-danger btn-sm"
+                      role="group"
+                      aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}
                     >
                       Review
@@ -105,14 +105,15 @@ aria-label="..."
                   </a>
                   {this.props.item.longDescript}
                 </div>
+                <div>
+                  {this.props.item.ebaydata}
+                </div>
                 <div className="media-right">
                   <ul className="nav nav-pills">
 
                     {this.props.openLibLink
                       ? <li role="presentation" className="enabled"><a onClick={() => window.open(this.props.openLibLink, '_blank')}>Open Library</a></li>
                       : <div />}
-                    {/* <li role="presentation" className="disabled"><a href="#">Open Library</a></li> */}
-                    {/* <li role="presentation" className="disabled"><a href="#">Check local library</a></li> */}
                   </ul>
                 </div>
               </div>
