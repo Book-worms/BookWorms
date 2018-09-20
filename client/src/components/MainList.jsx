@@ -1,12 +1,18 @@
 import React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { BrowserRouter, Link } from 'react-router-dom';
+import { Button, Popup } from 'semantic-ui-react';
+import UserReviewSubmit from './UserReviewSubmit.jsx';
+
 
 class MainList extends React.Component {
   constructor(props) {
+    console.log(props, 'MainList.jsx')
     super(props);
 
-    this.state = {
 
+    this.state = {
+      reviewInput: null
     };
     this.handleSearchClick = (e) => {
       e.preventDefault();
@@ -104,6 +110,9 @@ aria-label="..."
                     <h4 className="media-heading">{this.props.item.title}</h4>
                   </a>
                   {this.props.item.longDescript}
+                  <div>
+                    <UserReviewSubmit />
+                  </div>
                 </div>
                 <div className="media-right">
                   <ul className="nav nav-pills">

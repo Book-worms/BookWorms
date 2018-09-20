@@ -33,14 +33,39 @@ const userSchema = mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-const reviewSchema = mongoose.Schema({
-  title: String,
-  username: String,
-  reviewText: String,
-  reviewRating: Number,
-});
+// const reviewSchema = mongoose.Schema({
+//   title: String,
+//   username: String,
+//   reviewText: String,
+//   reviewRating: Number,
+// });
 
-const Review = mongoose.model('Review', reviewSchema);
+//create UserReviewSchema
+const userReviewSchema = mongoose.Schema({
+  username: String,
+  title: String,
+  text: String,
+  rating: Number
+})
+
+const UserReview = mongoose.model('UserReview', userReviewSchema);
+
+const saveUserReview = (username, title, text, rating, callback) => {
+  const newUserReview = new UserReview({
+    username,
+    title,
+    text,
+    rating
+  });
+  newUserReview.save((err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(err, data);
+    }
+  })
+}
+// const Review = mongoose.model('Review', reviewSchema);
 
 const saveReview = (title, username, reviewText, reviewRating, cb) => {
   const review = new Review({
@@ -220,6 +245,7 @@ module.exports = {
   passportValidate,
   allBooks,
   addRating,
-  saveReview,
+  saveUserReview,
+  // saveReview,
   allReviews,
 };
