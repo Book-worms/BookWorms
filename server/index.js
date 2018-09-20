@@ -9,18 +9,22 @@ const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 const helpers = require('./helpers.js');
 const db = require('../database/index.js');
 
 //require ebayHelpers file for post/get requests
 const ebayHelpers = require('./ebayHelpers.js');
 require('dotenv').config();
+const ebayHelpers = require('./ebayhelpers').ebayHelpers;
 
 const app = express();
 // tell the app to look for static files in these directories
 app.use(express.static(`${__dirname}/../client/dist`));
 // tell the app to parse HTTP body messages
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+
 
 // create application/json parser
 const jsonParser = bodyParser.json();
@@ -268,8 +272,17 @@ app.get('/goodreads', (req, res) => {
     .catch(err => console.log(err));
 });
 
-
+app.post('/ebaybay',
+  (request, response) => {
+    const keyWordToEncode = request.body;
+    const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
+    console.log('request.body: ', request.body);
+    console.log('encoded keyword: ', keyWordEncoded);
+    response.send(201, 'OK');
+    response.end();
+  });
 // Set Port, hosting services will look for process.env.PORT
+
 
 app.set('port', (process.env.PORT || 3000));
 // start the server

@@ -1,4 +1,4 @@
-const db = require('../../database/index.js')
+const db = require('../../database/index.js');
 const PassportLocalStrategy = require('passport-local').Strategy;
 
 
@@ -7,9 +7,9 @@ const PassportLocalStrategy = require('passport-local').Strategy;
  */
 module.exports = new PassportLocalStrategy({
   session: false,
-  passReqToCallback: true
-}, (req, username, password, done) => {
+  passReqToCallback: true,
+}, (req, username, password, done) =>
 
-  // find a user by name
-  return db.passportValidate(username, password);
-});
+    // find a user by name
+    db.passportValidate(username, password)
+);
