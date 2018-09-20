@@ -11,6 +11,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const helpers = require('./helpers.js');
 const db = require('../database/index.js');
+
+//require ebayHelpers file for post/get requests
+const ebayHelpers = require('./ebayHelpers.js');
 require('dotenv').config();
 
 const app = express();
@@ -268,7 +271,7 @@ app.get('/goodreads', (req, res) => {
 
 // Set Port, hosting services will look for process.env.PORT
 
-app.set('port', (process.env.PORT || 80));
+app.set('port', (process.env.PORT || 3000));
 // start the server
 app.listen(app.get('port'), () => {
   console.log(`Server is running on port ${app.get('port')}`);

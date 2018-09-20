@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const MONGOLINK = require('../config/config').MONGOLINK;
+// const MONGOLINK = require('../config/config').MONGOLINK;
 const config = require('../config');
 
 
