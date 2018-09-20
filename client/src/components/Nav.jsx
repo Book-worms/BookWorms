@@ -56,7 +56,9 @@ class Nav extends React.Component {
                 </NavDropdown>
               </ul>
               <form className="navbar-form navbar-left">
-                <Search handleSearchInput={this.props.handleSearchInput} />
+                <Search 
+                handleSearchInput={this.props.handleSearchInput} 
+                ebaySearch={this.props.ebaySearch} />
               </form>
               
               <ul className="nav navbar-nav navbar-right">
