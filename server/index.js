@@ -284,11 +284,13 @@ app.get('/goodreads', (req, res) => {
 // TEAM AMERICAIN IDOL WORK STARTS HERE //
 
 //post request to server for userReviews
-app.post('/UserReviewSubmit', (req, body) => {
+app.post('/UserReviewSubmit', (req, res) => {
   console.log(req.body, 'post request from server/index.js')
   const newReview = {
 
   }
+  res.send(201, 'OK');
+  res.end();
 })
 
 

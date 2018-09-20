@@ -20,7 +20,6 @@ export default class UserReviewSubmit extends Component {
 
   handleReviewSubmit(e) {
     e.preventDefault();
-    console.log('clicked')
     //create object to store information for review
     const params = {
       username: this.state.username,
