@@ -16,7 +16,7 @@ const db = require('../database/index.js');
 // require ebayHelpers file for post/get requests
 // const ebayHelpers = require('./ebayHelpers.js');
 require('dotenv').config();
-const ebayHelpers = require('./ebayhelpers').ebayHelpers;
+const ebayHelpers = require('./ebayHelpers').ebayHelpers;
 
 const app = express();
 // tell the app to look for static files in these directories
@@ -282,7 +282,7 @@ app.post('/ebaybay',
         if (error) {
           console.log('error inside ebaypost index.js: ', error);
         } else {
-          console.log(response);
+          // console.log(response);
           const parsedBody = JSON.parse(body);
           console.log('parsedBody:', parsedBody);
         }
