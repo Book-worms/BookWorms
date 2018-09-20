@@ -7,7 +7,7 @@ import UserReviewSubmit from './UserReviewSubmit.jsx';
 
 export default class MainList extends Component {
   constructor(props) {
-    console.log(props, 'MainList.jsx')
+    // console.log(props, 'MainList.jsx')
     super(props);
 
 
@@ -90,7 +90,7 @@ export default class MainList extends Component {
                   </a>
                   {this.props.item.longDescript}
                   <div>
-                    <UserReviewSubmit />
+                    <UserReviewSubmit title={this.props.item.title}/>
                   </div>
                 </div>
                 <div className="media-right">

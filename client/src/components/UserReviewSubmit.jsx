@@ -7,12 +7,19 @@ export default class UserReviewSubmit extends Component {
     this.state = {
       username: '',
       title: '',
+      bookTitle: this.props.title,
       reviewText: '',
       rating: 0
     }
     this.updateReviewText = this.updateReviewText.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.updateRating = this.updateRating.bind(this);
+    this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
+  }
+
+  handleReviewSubmit(e) {
+    e.preventDefault();
+
   }
   updateTitle(e) {
     e.preventDefault();
