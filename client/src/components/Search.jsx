@@ -3,7 +3,6 @@ import React from 'react';
 class Search extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       value: '',
       toSearchList: false,
@@ -35,10 +34,10 @@ class Search extends React.Component {
       <div>
         <div type="text" className="form-group">
           <input
-className="form-control"
-placeholder="Search"
+            className="form-control"
+            placeholder="Search"
             type="text"
-value={this.state.value}
+            value={this.state.value}
             onKeyPress={this.handleKeyInput.bind(this)}
             onChange={this.handleInputChange.bind(this)}
           />

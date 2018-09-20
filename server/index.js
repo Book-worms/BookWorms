@@ -47,6 +47,11 @@ const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 app.use(morgan('tiny'));
 
+app.set('port', (process.env.PORT || 3000));
+// start the server
+app.listen(app.get('port'), () => {
+  console.log(`Server is running on port ${app.get('port')}`);
+});
 
 app.post('/addRating', jsonParser, (req, res) => {
   const body = req.body;
@@ -302,21 +307,19 @@ app.get('/goodreads', (req, res) => {
 //     response.send(201, 'OK');
 //     response.end();
 //   });
-
 app.post('/ebaybay',
-  (request, response) => {
-    const keyWordToEncode = request.body;
+  (req, res) => {
+    const keyWordToEncode = req.body;
     console.log(keyWordToEncode);
     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
     console.log(keyWordEncoded);
+
+    ebayHelpers.ebayPost(keyWordEncoded,
+      (err, res) => {
+        if (err) {
+          console.log('ebayhelpers erro');
+        } else {
+          console.log('ebayhelpers success', res);
+        }
+      });
   });
-
-
-// Set Port, hosting services will look for process.env.PORT
-
-
-app.set('port', (process.env.PORT || 3000));
-// start the server
-app.listen(app.get('port'), () => {
-  console.log(`Server is running on port ${app.get('port')}`);
-});
