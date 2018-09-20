@@ -282,7 +282,8 @@ app.post('/ebaybay',
           console.log('error inside ebaypost index.js: ', error);
         } else {
           console.log(response);
-          console.log(body);
+          const parsedBody = JSON.parse(body);
+          console.log('parsedBody:', parsedBody);
         }
       });
     response.send(201, 'OK');
