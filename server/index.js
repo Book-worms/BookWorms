@@ -281,7 +281,14 @@ app.post('/ebaybay',
     response.send(201, request.body);
     response.end();
   });
+//post UserReviews to database
+app.post('/userReviews', (req, res) => {
+  console.log(req.body);
+})
+
+
 // Set Port, hosting services will look for process.env.PORT
+
 
 
 app.set('port', (process.env.PORT || 3000));
