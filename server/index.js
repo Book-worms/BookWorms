@@ -53,9 +53,9 @@ app.post('/addRating', jsonParser, (req, res) => {
 
   db.addRating(body.title, body.rating, (err, doc) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
-      console.log('rating added in server, success');
+      // console.log('rating added in server, success');
       res.send(201);
     }
   });
@@ -65,7 +65,7 @@ app.get('/topRated', (req, res) => {
   const top = [];
   db.allBooks((err, books) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       books.forEach((book) => {
         if (book.bookWormRating > 1) {
@@ -114,14 +114,14 @@ app.post('/addReview', jsonParser, (req, res) => {
   const reviewRating = req.body.reviewRating;
   db.saveReview(title, username, reviewText, reviewRating, (err, doc) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
-      console.log('saved review');
+      // console.log('saved review');
     }
   });
   db.allReviews((err, doc) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       doc.forEach((review) => {
         const currentBook = {
@@ -143,7 +143,7 @@ app.get('/singleReviews', (req, res) => {
   const userReviews = [];
   db.allReviews((err, doc) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       doc.forEach((review) => {
         const currentBook = {
@@ -220,8 +220,9 @@ app.get('/googleData', (req, response) => {
                 userRating: 3.0,
                 coverImage,
               }, (err) => {
-                if (err) { console.log(err); } else {
-                  console.log('success');
+                if (err) {
+                  // console.log(err); } else {
+                  // console.log('success');
                 }
               });
               response.json({
@@ -254,7 +255,7 @@ app.get('/openLibLink', (req, res) => {
       }
     })
     .catch((err) => {
-      console.error(err, 'error in server');
+      // console.error(err, 'error in server');
     });
 });
 
@@ -266,8 +267,8 @@ app.get('/goodreads', (req, res) => {
   // let title = req.body.title;
   helpers.goodReadsData('Green Eggs and Ham')
     .then((data) => {
-      console.log(data.data.split('<average_rating>')[1].slice(0, 4));
-      console.log(data.data.split('<description>')[1].split(']')[0].slice(9));
+      // console.log(data.data.split('<average_rating>')[1].slice(0, 4));
+      // console.log(data.data.split('<description>')[1].split(']')[0].slice(9));
     })
     .catch(err => console.log(err));
 });
