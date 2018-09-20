@@ -209,7 +209,7 @@ class App extends Component {
                       openLibLink={this.state.openLibLink}
                       handleHomeLink={this.getTopRated.bind(this)}
                       // add link for ebaySearch
-                      ebaySearch={this.ebaySearch.bind(this)}
+                      handle={this.ebaySearch.bind(this)}
 
                     />
                   )}
