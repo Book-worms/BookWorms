@@ -59,17 +59,20 @@ class Nav extends React.Component {
               <form className="navbar-form navbar-left">
                 <Search
                   handleSearchInput={this.props.handleSearchInput}
-                  ebaySearch={this.props.ebaySearch}
+                  handleEbaySearchInput={this.props.handleEbaySearchInput}
                 />
               </form>
 
               <ul className="nav navbar-nav navbar-right">
-                <li><Link to="">
-Hi
+                <li>
+<Link to="">
+                  Hi
 {' '}
-<b>{this.props.username}</b>
-, you are logged in
-</Link></li>
+                  <b>{this.props.username}</b>
+                  , you are logged in
+</Link>
+
+                </li>
                 <li><Link to="/logout">Log out</Link></li>
               </ul>
             </div>
@@ -78,7 +81,7 @@ Hi
 
         {this.props.reviewToggled
           ? this.props.items.map(item => <Reviews item={item} key={item.title} reviews={this.props.reviews} handleReviewInput={this.props.handleReviewInput} username={this.props.username} />)
-          : this.props.items.map(item => <MainList item={item} key={item.title} reviewToggle={this.props.reviewToggle} handleSearchInput={this.props.handleSearchInput} openLibLink={this.props.openLibLink} />)}
+          : this.props.items.map(item => <MainList item={item} key={item.title} reviewToggle={this.props.reviewToggle} handleSearchInput={this.props.handleSearchInput} handleEbaySearchInput={this.props.handleEbaySearchInput} openLibLink={this.props.openLibLink} />)}
 
       </div>
     );
