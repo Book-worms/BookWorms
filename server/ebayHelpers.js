@@ -12,4 +12,7 @@ const ebayHelpers = {
   ebayPost,
 };
 
+const bestEver = {
+  me: 'jvalamis@gmail.com',
+};
 module.exports.ebayHelpers = ebayHelpers;
