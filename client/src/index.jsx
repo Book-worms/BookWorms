@@ -15,14 +15,16 @@ import Nav1 from './components/Nav1.jsx';
 import Nav from './components/Nav.jsx';
 import DATA from './mockData';
 import REVIEWS from './mockReview';
+import axios from 'axios';
 import HomePage from './components/HomePage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import Logout from './containers/Logout.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import Main from './components/Main.jsx';
 import Auth from './modules/Auth';
+import UserReviewSubmit from './components/UserReviewSubmit.jsx';
 
-const axios = require('axios');
+// const axios = require('axios');
 
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
@@ -55,6 +57,7 @@ const PropsRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   constructor(props) {
     super(props);
+    // console.log(props)
     this.state = {
       items: [],
       reviews: [],
@@ -67,9 +70,9 @@ class App extends Component {
     //add function for axios call to ebay
     this.ebaySearch = (keyword) => {
       console.log(keyword)
-      axios.get('/ebaybay')
+      axios.post('/ebaybay', { keyword })
       .then(response => {
-        console.log(response.data);
+        console.log(response);
       })
       .catch(err => {
         console.error(err);

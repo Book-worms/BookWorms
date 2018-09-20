@@ -1,6 +1,7 @@
 import React from 'react';
 import UserReviewsList from './UserReviewsList.jsx';
 import CriticsReviewsList from './CriticsReviewsList.jsx';
+import UserReviewSubmit from './UserReviewSubmit.jsx';
 
 const Rating = require('react-rating');
 
@@ -11,6 +12,9 @@ class Reviews extends React.Component {
       starValue: 0,
       value: '' 
     };
+    this.redirectToUserSubmission= () => {
+      this.props.history.push('/UserReviewSubmit'); 
+    }
     this.handleChange = (e) => {
       this.setState({ value: e.target.value });
     }
@@ -52,7 +56,7 @@ class Reviews extends React.Component {
               </div>
               <div className="media-body">
                 <h4 className="media-heading">{this.props.item.title}</h4>
-                {this.props.item.longDescript}
+                {this.props.item.pt}
               </div>
             </div>
           </div>
@@ -97,6 +101,10 @@ class Reviews extends React.Component {
               <h4 className="media-heading">User Reviews</h4>
               {this.props.reviews.map(review => <UserReviewsList review={review} key={review.user} />)}
 
+            </div>
+            <div className="container-fluid" style={{paddingTop: '20px' }}>
+              <h5 className="media-heading">Write Review</h5>
+              <UserReviewSubmit onClick={this.redirectToUserSubmission}>Write Review</UserReviewSubmit>
             </div>
           </div>
         </div>

@@ -273,10 +273,10 @@ app.get('/goodreads', (req, res) => {
 });
 
 app.post('/ebaybay',
-  (request, response) => {
+  (request, response, body) => {
     const keyWordToEncode = request.body;
     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
-    console.log('request.body: ', request.body);
+    console.log('8:15 request.body: ', response);
     console.log('encoded keyword: ', keyWordEncoded);
     response.send(201, request.body);
     response.end();

@@ -13,6 +13,7 @@ import {
 	Redirect,
 	withRouter
 } from 'react-router-dom'
+import UserReviewSubmit from './UserReviewSubmit.jsx';
 
 class Nav extends React.Component {
   constructor(props) {
@@ -23,6 +24,10 @@ class Nav extends React.Component {
     }
     this.handleBookwormsSelect = () => {
       this.props.handleHomeLink(); 
+    }
+
+    this.redirectToUserSubmission = () => {
+      this.props.history.push('/UserReviewSubmit');
     }
   }
   render() {

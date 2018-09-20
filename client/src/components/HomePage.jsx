@@ -3,6 +3,9 @@ import { Card, CardTitle, CardText } from 'material-ui/Card';
 import Auth from '../modules/Auth';
 
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
     // update authenticated state on logout
