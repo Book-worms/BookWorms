@@ -41,10 +41,8 @@ placeholder="Search"
 value={this.state.value}
             onKeyPress={this.handleKeyInput.bind(this)}
             onChange={this.handleInputChange.bind(this)}
-          >
-          </input>
-/>
-</div>
+          />
+        </div>
         <button type="submit" className="btn btn-default" onClick={this.handleOnclick.bind(this)}>Submit</button>
       </div>
     );
