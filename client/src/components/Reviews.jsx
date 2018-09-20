@@ -56,7 +56,8 @@ class Reviews extends React.Component {
                 </a>
               </div>
               <div className="media-body">
-                <h4 className="media-heading">{this.props.item.title}</h4>
+                <h4 className="media-heading">
+                  {this.props.item.title}</h4>
                 {this.props.item.longDescript}
               </div>
             </div>
