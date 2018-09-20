@@ -65,12 +65,11 @@ class App extends Component {
     };
 
     //add function for axios call to ebay
-    this.ebaySearch = (title) => {
-      axios.get('/ebaybay', {
-        params: { title }
-      })
+    this.ebaySearch = (keyword) => {
+      console.log(keyword)
+      axios.get('/ebaybay')
       .then(response => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch(err => {
         console.error(err);

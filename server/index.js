@@ -14,7 +14,7 @@ const helpers = require('./helpers.js');
 const db = require('../database/index.js');
 
 //require ebayHelpers file for post/get requests
-const ebayHelpers = require('./ebayHelpers.js');
+// const ebayHelpers = require('./ebayHelpers.js');
 require('dotenv').config();
 const ebayHelpers = require('./ebayhelpers').ebayHelpers;
 
@@ -278,7 +278,7 @@ app.post('/ebaybay',
     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
     console.log('request.body: ', request.body);
     console.log('encoded keyword: ', keyWordEncoded);
-    response.send(201, 'OK');
+    response.send(201, request.body);
     response.end();
   });
 // Set Port, hosting services will look for process.env.PORT
