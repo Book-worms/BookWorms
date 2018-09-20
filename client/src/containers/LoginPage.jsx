@@ -68,7 +68,7 @@ class LoginPage extends React.Component {
         this.props.toggleAuthenticateStatus()
 
         // redirect signed in user to main
-        this.props.history.push('/');
+        this.props.history.push('/', {state: this.state.user.name});
       } else {
         // failure
 

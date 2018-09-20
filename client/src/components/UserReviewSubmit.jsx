@@ -59,15 +59,7 @@ export default class UserReviewSubmit extends Component {
                   <label className="form-check-label" htmlFor="inlineCheckbox1">4</label>
                   <input className="form-check-input" type="checkbox" id="5" onChange={this.updateRating}/>
                   <label className="form-check-label" htmlFor="inlineCheckbox1">5</label>
-                  {/* <Glyphicon glyph="star-empty" />
-                  <Glyphicon glyph="star-empty" />
-                  <Glyphicon glyph="star-empty" />
-                  <Glyphicon glyph="star-empty" />
-                  <Glyphicon glyph="star-empty" /> */}
                 </div>
-                {/* <div className="form-check form-check-inline">
-                  <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label className="form-check-label" for="inlineCheckbox1">1</label></div> */}
                 <input  type="text" 
                         className="form-control" 
                         placeholder="Title"

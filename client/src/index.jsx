@@ -66,6 +66,7 @@ class App extends Component {
       username: null,
       openLibLink: null,
     };
+    console.log(this.state.username)
 
     //add function for axios call to ebay
     this.ebaySearch = (keyword) => {

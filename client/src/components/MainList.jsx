@@ -7,7 +7,7 @@ import UserReviewSubmit from './UserReviewSubmit.jsx';
 
 class MainList extends React.Component {
   constructor(props) {
-    // console.log(props, 'MainList.jsx')
+    console.log(props, 'MainList.jsx')
     super(props);
 
 
@@ -37,7 +37,6 @@ class MainList extends React.Component {
 
   render() {
     return (
-      
       <div>
         <div className="container">
         <Card >
@@ -106,7 +105,6 @@ class MainList extends React.Component {
           </div>
           </div>
       </Card>
-
         </div>
       </div>
     );
