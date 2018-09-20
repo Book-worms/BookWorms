@@ -6,7 +6,7 @@ class Search extends React.Component {
 
     this.state = {
       value: '',
-      toSearchList: false
+      toSearchList: false,
     };
   }
 
@@ -17,7 +17,7 @@ class Search extends React.Component {
   handleOnclick(e) {
     e.preventDefault();
     this.props.handleSearchInput(this.state.value);
-    this.props.ebaySearch(this.state.value);
+    this.props.handleEbaySearchInput(this.state.value);
     this.setState({ value: '' });
   }
 
@@ -25,21 +25,28 @@ class Search extends React.Component {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.props.handleSearchInput(this.state.value);
+      this.props.handleEbaySearchInput(this.state.value);
       this.setState({ value: '' });
     }
   }
 
   render() {
     return (
-    <div>
-      <div type="text" className="form-group">
-        <input className="form-control" placeholder="Search"
-          type="text" value={this.state.value}
-          onKeyPress={this.handleKeyInput.bind(this)}
-          onChange={this.handleInputChange.bind(this)} />
-      </div>
+      <div>
+        <div type="text" className="form-group">
+          <input
+className="form-control"
+placeholder="Search"
+            type="text"
+value={this.state.value}
+            onKeyPress={this.handleKeyInput.bind(this)}
+            onChange={this.handleInputChange.bind(this)}
+          >
+          </input>
+/>
+</div>
         <button type="submit" className="btn btn-default" onClick={this.handleOnclick.bind(this)}>Submit</button>
-    </div>       
+      </div>
     );
   }
 }
