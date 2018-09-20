@@ -61,21 +61,22 @@ class App extends Component {
       authenticated: false,
       username: null,
       openLibLink: null,
+      ebay: null,
     };
 
     // add function for axios call to ebay
-    this.ebaySearch = (keyword) => {
-      console.log(keyword);
-      axios.get('/ebaybay')
+    this.ebaySearch = (title) => {
+      axios.get('/ebaybay', {
+        params: { title },
+      })
         .then((response) => {
           console.log('response.data', response.data);
-          // this.setState({ ebay: `hello` });
+          // this.setState({ ebay });
         })
         .catch((err) => {
           console.error('error', err);
         });
     };
-
 
     this.searchForBook = (title) => {
       axios.get('/googleData', {

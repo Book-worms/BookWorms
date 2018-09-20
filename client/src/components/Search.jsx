@@ -5,7 +5,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       value: '',
-      toSearchList: false,
+      // toSearchList: false,
     };
   }
 
