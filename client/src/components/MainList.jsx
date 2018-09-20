@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { Button, Popup } from 'semantic-ui-react';
 import UserReviewSubmit from './UserReviewSubmit.jsx';
 
 
-class MainList extends React.Component {
+export default class MainList extends Component {
   constructor(props) {
     console.log(props, 'MainList.jsx')
     super(props);
@@ -38,68 +38,47 @@ class MainList extends React.Component {
                     <img className="media-object" src={this.props.item.coverImage} alt="book cover" />
                   </a>
                   <div className="btn-group-vertical" role="group" aria-label="...">
-                    <button
-type="button"
-className="btn-group btn btn-primary btn-sm"
-role="group"
-aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      Bookworms 
-{' '}
-<span className="badge">{this.props.item.aggregateRating}</span>
+                    <button type="button"
+                            className="btn-group btn btn-primary btn-sm"
+                            role="group"
+                            aria-label="..."
+                            onClick={this.handleReviewClick.bind(this)}>
+                      Bookworms {' '}<span className="badge">{this.props.item.aggregateRating}</span>
                     </button>
-                    <button
-type="button"
-className="btn-group btn btn-info btn-sm"
-role="group"
-aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      Google Books 
-{' '}
-<span className="badge">{this.props.item.rating}</span>
+                    <button type="button"
+                            className="btn-group btn btn-info btn-sm"
+                            role="group"
+                            aria-label="..."
+                            onClick={this.handleReviewClick.bind(this)}>
+                      Google Books {' '}<span className="badge">{this.props.item.rating}</span>
                     </button>
-                    <button
-type="button"
-className="btn-group btn btn-info btn-sm"
-role="group"
-aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      Library Thing 
-{' '}
-<span className="badge">{this.props.item.libThingRating}</span>
+                    <button type="button"
+                            className="btn-group btn btn-info btn-sm"
+                            role="group"
+                            aria-label="..."
+                            onClick={this.handleReviewClick.bind(this)}>
+                      Library Thing {' '}<span className="badge">
+                      {this.props.item.libThingRating}</span>
                     </button>
-                    <button
-type="button"
-className="btn-group btn btn-info btn-sm"
-role="group"
-aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      GoodReads 
-{' '}
-<span className="badge">{this.props.item.gReadsRating}</span>
+                    <button type="button"
+                            className="btn-group btn btn-info btn-sm"
+                            role="group"
+                            aria-label="..."
+                            onClick={this.handleReviewClick.bind(this)}>
+                      GoodReads {' '}<span className="badge">{this.props.item.gReadsRating}</span>
                     </button>
-                    <button
-type="button"
-className="btn-group btn btn-info btn-sm"
-role="group"
-aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      User Rating 
-{' '}
-<span className="badge">{this.props.item.userRating}</span>
+                    <button type="button"
+                            className="btn-group btn btn-info btn-sm"
+                            role="group"
+                            aria-label="..."
+                            onClick={this.handleReviewClick.bind(this)}>
+                      User Rating {' '}<span className="badge">{this.props.item.userRating}</span>
                     </button>
-                    <button
-type="button"
-className="btn-group btn btn-danger btn-sm"
-role="group"
-aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
+                    <button type="button"
+                            className="btn-group btn btn-danger btn-sm"
+                            role="group"
+                            aria-label="..."
+                            onClick={this.handleReviewClick.bind(this)}>
                       Review
                       {/* <span className="glyphicon glyphicon-star-empty" aria-hidden="true"></span> */}
                     </button>
@@ -134,4 +113,3 @@ aria-label="..."
   }
 }
 
-export default MainList;
