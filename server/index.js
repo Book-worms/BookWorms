@@ -273,17 +273,15 @@ app.post('/ebaybay',
   (request, response) => {
     const keyWordToEncode = request.body;
     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
-    console.log('request.body: ', request.body);
-    console.log('encoded keyword: ', keyWordEncoded);
     ebayHelpers.ebayPost(keyWordEncoded,
-      (error, response, body) {
+      (error, response, body) => {
         if (error) {
-          console.log('error inside ebaypost index.js: ', error)
+          console.log('error inside ebaypost index.js: ', error);
         } else {
           console.log(response);
           console.log(body);
         }
-      })
+      });
     response.send(201, 'OK');
     response.end();
   });
