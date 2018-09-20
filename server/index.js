@@ -184,6 +184,7 @@ app.get('/genreTest', (req, res) => {
 
 
 // res.data.items[0] will access the first book on search of a title. with a proper title this works well.
+
 app.get('/googleData', (req, response) => {
   const query = req.query.title;
   helpers.googleBooks(query)
@@ -221,7 +222,8 @@ app.get('/googleData', (req, response) => {
                 coverImage,
               }, (err) => {
                 if (err) {
-                  // console.log(err); } else {
+                  // console.log(err);
+                } else {
                   // console.log('success');
                 }
               });
@@ -240,7 +242,7 @@ app.get('/googleData', (req, response) => {
             });
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log('error line 243, not our problem'));
 });
 
 app.get('/openLibLink', (req, res) => {
@@ -251,7 +253,7 @@ app.get('/openLibLink', (req, res) => {
         const readerLink = libLink.data[`ISBN:${ISBN}`].preview_url;
         res.send({ readerLink });
       } else {
-        res.send(200);
+        res.sendStatus(200);
       }
     })
     .catch((err) => {
@@ -270,26 +272,46 @@ app.get('/goodreads', (req, res) => {
       // console.log(data.data.split('<average_rating>')[1].slice(0, 4));
       // console.log(data.data.split('<description>')[1].split(']')[0].slice(9));
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log('error line 273'));
 });
+
+
+// TEAM AMERICAIN IDOL WORK STARTS HERE //
+
+// app.post('/ebaybay',
+//   (request, response, body) => {
+//     console.log('APP POST');
+//     // console.log(request.body);
+//     const keyWordToEncode = 'scarface';
+//     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
+
+//     console.log(keyWordToEncode, keyWordEncoded);
+
+//     ebayHelpers.ebayPost(keyWordEncoded,
+//       (error) => {
+//         if (error) {
+//           // console.log('error inside ebaypost index.js: ', error);
+//           // console.log(error);
+//           // console.log('error inside post');
+//         } else {
+//           // console.log(response);
+//           const parsedBody = JSON.parse(response.body);
+//           // console.log('parsedBody:', parsedBody);
+//         }
+//       });
+//     response.send(201, 'OK');
+//     response.end();
+//   });
 
 app.post('/ebaybay',
   (request, response) => {
     const keyWordToEncode = request.body;
+    console.log(keyWordToEncode);
     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
-    ebayHelpers.ebayPost(keyWordEncoded,
-      (error, response, body) => {
-        if (error) {
-          console.log('error inside ebaypost index.js: ', error);
-        } else {
-          // console.log(response);
-          const parsedBody = JSON.parse(body);
-          console.log('parsedBody:', parsedBody);
-        }
-      });
-    response.send(201, 'OK');
-    response.end();
+    console.log(keyWordEncoded);
   });
+
+
 // Set Port, hosting services will look for process.env.PORT
 
 

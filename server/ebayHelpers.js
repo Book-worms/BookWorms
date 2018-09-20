@@ -13,13 +13,10 @@ const ebayPost = (keyWordSearch, callback) => {
   request(options, callback);
 };
 
+
 const ebayHelpers = {
   createKeyWordForSearch,
   ebayPost,
-};
-
-const whyWontYouAdd = {
-  cup: 'coffee',
 };
 
 module.exports.ebayHelpers = ebayHelpers;
