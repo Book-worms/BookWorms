@@ -65,12 +65,12 @@ class Nav extends React.Component {
 
               <ul className="nav navbar-nav navbar-right">
                 <li>
-<Link to="">
-                  Hi
-{' '}
-                  <b>{this.props.username}</b>
-                  , you are logged in
-</Link>
+                  <Link to="">
+                    Hi
+                  {' '}
+                    <b>{this.props.username}</b>
+                    , you are logged in
+                </Link>
 
                 </li>
                 <li><Link to="/logout">Log out</Link></li>

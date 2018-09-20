@@ -307,7 +307,7 @@ app.get('/goodreads', (req, res) => {
 //     response.send(201, 'OK');
 //     response.end();
 //   });
-app.post('/ebaybay',
+app.get('/ebaybay',
   (req, res) => {
     const keyWordToEncode = req.body;
     console.log(keyWordToEncode);

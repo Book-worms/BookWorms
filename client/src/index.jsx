@@ -23,8 +23,6 @@ import SignUpPage from './containers/SignUpPage.jsx';
 import Main from './components/Main.jsx';
 import Auth from './modules/Auth';
 
-// const axios = require('axios');
-
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
 
@@ -39,8 +37,8 @@ const LoggedOutRoute = ({ component: Component, ...rest }) => (
         }}
         />
       ) : (
-        <Component {...props} {...rest} />
-      )
+          <Component {...props} {...rest} />
+        )
     )}
   />
 );
@@ -71,6 +69,7 @@ class App extends Component {
       axios.get('/ebaybay')
         .then((response) => {
           console.log('response.data', response.data);
+          // this.setState({ ebay: `hello` });
         })
         .catch((err) => {
           console.error('error', err);
@@ -209,15 +208,15 @@ class App extends Component {
                       openLibLink={this.state.openLibLink}
                       handleHomeLink={this.getTopRated.bind(this)}
                       // add link for ebaySearch
-                      handle={this.ebaySearch.bind(this)}
+                      handleEbaySearchInput={this.ebaySearch.bind(this)}
 
                     />
                   )}
                 />
               </div>
             ) : (
-              <Route path="/" render={props => <Nav1 />} />
-            )}
+                <Route path="/" render={props => <Nav1 />} />
+              )}
             <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             <LoggedOutRoute path="/signup" component={SignUpPage} />
