@@ -283,30 +283,15 @@ app.get('/goodreads', (req, res) => {
 
 // TEAM AMERICAIN IDOL WORK STARTS HERE //
 
-// app.post('/ebaybay',
-//   (request, response, body) => {
-//     console.log('APP POST');
-//     // console.log(request.body);
-//     const keyWordToEncode = 'scarface';
-//     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
+//post request to server for userReviews
+app.post('/UserReviewSubmit', (req, body) => {
+  console.log(req.body, 'post request from server/index.js')
+  const newReview = {
 
-//     console.log(keyWordToEncode, keyWordEncoded);
+  }
+})
 
-//     ebayHelpers.ebayPost(keyWordEncoded,
-//       (error) => {
-//         if (error) {
-//           // console.log('error inside ebaypost index.js: ', error);
-//           // console.log(error);
-//           // console.log('error inside post');
-//         } else {
-//           // console.log(response);
-//           const parsedBody = JSON.parse(response.body);
-//           // console.log('parsedBody:', parsedBody);
-//         }
-//       });
-//     response.send(201, 'OK');
-//     response.end();
-//   });
+
 app.get('/ebaybay',
   (req, res) => {
     const keyWordToEncode = req.body;

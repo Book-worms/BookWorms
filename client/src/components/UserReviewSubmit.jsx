@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Glyphicon } from 'react-bootstrap';
+import axios from 'axios';
 
 export default class UserReviewSubmit extends Component {
   constructor(props) {
@@ -19,8 +20,26 @@ export default class UserReviewSubmit extends Component {
 
   handleReviewSubmit(e) {
     e.preventDefault();
+    console.log('clicked')
+    //create object to store information for review
+    const params = {
+      username: this.state.username,
+      title: this.state.title,
+      bookTitle: this.state.bookTitle,
+      reviewText: this.state.reviewText,
+      rating: this.state.rating
+    }
 
+    //post request to server
+    axios.post('/UserReviewSubmit', params)
+      .then(response => {
+        console.log('axios post request from UserReviewSubmit.jsx: ', response);
+      })
+      .catch(err => {
+        console.log('error message from UserReviewSubmit.jsx: ', err);
+      })
   }
+
   updateTitle(e) {
     e.preventDefault();
     this.setState({
@@ -75,7 +94,9 @@ export default class UserReviewSubmit extends Component {
                           className="form-control" 
                           onChange={this.updateReviewText}
                           placeholder="Write Review...."/>
-                <button type="button" className="btn btn-success">Submit Review</button>
+                <button type="button" 
+                        className="btn btn-success"
+                        onClick={this.handleReviewSubmit}>Submit Review</button>
               </div>
             </form>
           </div>
