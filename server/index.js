@@ -202,7 +202,7 @@ app.get('/googleData', (req, response) => {
       const coverImage = info.imageLinks.thumbnail; // url to large format thumbnail
       const ISBN10 = info.industryIdentifiers[0].identifier;
       let ISBN13;
-      
+
       if (info.industryIdentifiers[1]) {
         ISBN13 = info.industryIdentifiers[1].identifier;
       }
@@ -288,9 +288,13 @@ app.get('/goodreads', (req, res) => {
 app.post('/UserReviewSubmit', (req, res) => {
   console.log(req.body, 'post request from server/index.js')
   const newReview = {
-
+    username: req.body.username,
+    title: req.body.title,
+    reviewText: req.body.reviewText,
+    rating: req.body.rating
   }
-  res.sendStatus(201, "okey, dokey");
+  db.saveUserReview(newReview, res);
+  res.sendStatus(201);
   res.end();
 })
 
