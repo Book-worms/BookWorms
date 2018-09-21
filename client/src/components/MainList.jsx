@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { Button, Popup } from 'semantic-ui-react';
-import UserReviewSubmit from './UserReviewSubmit.jsx';
+import UserReviewSubmit from './userReviewSubmit.jsx';
 
 
 export default class MainList extends Component {

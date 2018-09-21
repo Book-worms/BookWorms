@@ -22,7 +22,8 @@ const app = express();
 // tell the app to look for static files in these directories
 app.use(express.static(`${__dirname}/../client/dist`));
 // tell the app to parse HTTP body messages
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 
@@ -285,16 +286,17 @@ app.get('/goodreads', (req, res) => {
 // TEAM AMERICAIN IDOL WORK STARTS HERE //
 
 //post request to server for userReviews
-app.post('/UserReviewSubmit', (req, res) => {
+app.post('/userReviewSubmit', (req, res) => {
   console.log(req.body, 'post request from server/index.js')
-  const newReview = {
-    username: req.body.username,
-    title: req.body.title,
-    reviewText: req.body.reviewText,
-    rating: req.body.rating
-  }
-  db.saveUserReview(newReview, res);
+  // const newReview = {
+  //   username: req.body.username,
+  //   title: req.body.title,
+  //   reviewText: req.body.reviewText,
+  //   rating: req.body.rating
+  // }
+  // db.saveUserReview(newReview, res);
   res.sendStatus(201);
+  // res.send(req.body);
   res.end();
 })
 

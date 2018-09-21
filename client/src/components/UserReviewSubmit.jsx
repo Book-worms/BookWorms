@@ -22,16 +22,16 @@ export default class UserReviewSubmit extends Component {
     e.preventDefault();
     //create object to store information for review
     const params = {
-      // name: this.state.username,
       title: this.state.title,
       bookTitle: this.state.bookTitle,
       reviewText: this.state.reviewText,
       rating: this.state.rating
     }
+
     console.log(params);
-    //post request to server
-    axios.post('/UserReviewSubmit', params)
-      .then((response) => {
+    
+    axios.post('/userReviewSubmit', params)
+      .then(response => {
         console.log('axios post request from UserReviewSubmit.jsx: ', response);
       })
       .catch(err => {
@@ -93,9 +93,9 @@ export default class UserReviewSubmit extends Component {
                           className="form-control" 
                           onChange={this.updateReviewText}
                           placeholder="Write Review...."/>
-                <button type="button" 
+                <button type="submit" 
                         className="btn btn-success"
-                        onClick={this.handleReviewSubmit}>Submit Review</button>
+                        >Submit Review</button>
               </div>
             </form>
           </div>
