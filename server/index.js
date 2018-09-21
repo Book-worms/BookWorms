@@ -8,14 +8,24 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const cors = require('cors');
 const helpers = require('./helpers.js');
 const db = require('../database/index.js');
+
+// require ebayHelpers file for post/get requests
+// const ebayHelpers = require('./ebayHelpers.js');
+require('dotenv').config();
+const ebayHelpers = require('./ebayHelpers').ebayHelpers;
 
 const app = express();
 // tell the app to look for static files in these directories
 app.use(express.static(`${__dirname}/../client/dist`));
 // tell the app to parse HTTP body messages
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+
 
 // create application/json parser
 const jsonParser = bodyParser.json();
@@ -36,16 +46,22 @@ app.use('/api', authCheckMiddleware);
 const authRoutes = require('./routes/auth');
 
 app.use('/auth', authRoutes);
+app.use(morgan('tiny'));
 
+app.set('port', (process.env.PORT || 3000));
+// start the server
+app.listen(app.get('port'), () => {
+  console.log(`Server is running on port ${app.get('port')}`);
+});
 
 app.post('/addRating', jsonParser, (req, res) => {
   const body = req.body;
 
   db.addRating(body.title, body.rating, (err, doc) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
-      console.log('rating added in server, success');
+      // console.log('rating added in server, success');
       res.send(201);
     }
   });
@@ -55,7 +71,7 @@ app.get('/topRated', (req, res) => {
   const top = [];
   db.allBooks((err, books) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       books.forEach((book) => {
         if (book.bookWormRating > 1) {
@@ -104,14 +120,14 @@ app.post('/addReview', jsonParser, (req, res) => {
   const reviewRating = req.body.reviewRating;
   db.saveReview(title, username, reviewText, reviewRating, (err, doc) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
-      console.log('saved review');
+      // console.log('saved review');
     }
   });
   db.allReviews((err, doc) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       doc.forEach((review) => {
         const currentBook = {
@@ -133,7 +149,7 @@ app.get('/singleReviews', (req, res) => {
   const userReviews = [];
   db.allReviews((err, doc) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       doc.forEach((review) => {
         const currentBook = {
@@ -174,6 +190,7 @@ app.get('/genreTest', (req, res) => {
 
 
 // res.data.items[0] will access the first book on search of a title. with a proper title this works well.
+
 app.get('/googleData', (req, response) => {
   const query = req.query.title;
   helpers.googleBooks(query)
@@ -186,6 +203,7 @@ app.get('/googleData', (req, response) => {
       const coverImage = info.imageLinks.thumbnail; // url to large format thumbnail
       const ISBN10 = info.industryIdentifiers[0].identifier;
       let ISBN13;
+
       if (info.industryIdentifiers[1]) {
         ISBN13 = info.industryIdentifiers[1].identifier;
       }
@@ -210,8 +228,10 @@ app.get('/googleData', (req, response) => {
                 userRating: 3.0,
                 coverImage,
               }, (err) => {
-                if (err) { console.log(err); } else {
-                  console.log('success');
+                if (err) {
+                  // console.log(err);
+                } else {
+                  // console.log('success');
                 }
               });
               response.json({
@@ -229,7 +249,7 @@ app.get('/googleData', (req, response) => {
             });
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log('error line 243, not our problem'));
 });
 
 app.get('/openLibLink', (req, res) => {
@@ -240,11 +260,11 @@ app.get('/openLibLink', (req, res) => {
         const readerLink = libLink.data[`ISBN:${ISBN}`].preview_url;
         res.send({ readerLink });
       } else {
-        res.send(200);
+        res.sendStatus(200);
       }
     })
     .catch((err) => {
-      console.error(err, 'error in server');
+      // console.error(err, 'error in server');
     });
 });
 
@@ -256,17 +276,44 @@ app.get('/goodreads', (req, res) => {
   // let title = req.body.title;
   helpers.goodReadsData('Green Eggs and Ham')
     .then((data) => {
-      console.log(data.data.split('<average_rating>')[1].slice(0, 4));
-      console.log(data.data.split('<description>')[1].split(']')[0].slice(9));
+      // console.log(data.data.split('<average_rating>')[1].slice(0, 4));
+      // console.log(data.data.split('<description>')[1].split(']')[0].slice(9));
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log('error line 273'));
 });
 
 
-// Set Port, hosting services will look for process.env.PORT
-app.set('port', (process.env.PORT || 3000));
+// TEAM AMERICAIN IDOL WORK STARTS HERE //
 
-// start the server
-app.listen(app.get('port'), () => {
-  console.log(`Server is running on port ${app.get('port')}`);
-});
+//post request to server for userReviews
+app.post('/userReviewSubmit', (req, res) => {
+  console.log(req.body, 'post request from server/index.js')
+  // const newReview = {
+  //   username: req.body.username,
+  //   title: req.body.title,
+  //   reviewText: req.body.reviewText,
+  //   rating: req.body.rating
+  // }
+  // db.saveUserReview(newReview, res);
+  res.sendStatus(201);
+  // res.send(req.body);
+  res.end();
+})
+
+
+app.get('/ebaybay',
+  (req, res) => {
+    const keyWordToEncode = req.body;
+    console.log(keyWordToEncode);
+    const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
+    console.log(keyWordEncoded);
+
+    ebayHelpers.ebayPost(keyWordEncoded,
+      (err, res) => {
+        if (err) {
+          console.log('ebayhelpers erro');
+        } else {
+          console.log('ebayhelpers success', res);
+        }
+      });
+  });

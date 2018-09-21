@@ -1,18 +1,24 @@
-
-
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const MONGOLINK = require('../config.js');
+
+// const MONGOLINK = require('../config').MONGOLINK;
+
 const config = require('../config');
 
-mongoose.connect(MONGOLINK.MONGOLINK, { useMongoClient: true });
+
+// mongoose.connect(MONGOLINK, { useMongoClient: true });
+mongoose.connect(process.env.MLAB);
+
 // plug in the promise library:
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 
+
 db.on('error', () => {
+  // console.log('here', MONGOLINK);
   console.log('mongoose connection error');
 });
 
@@ -34,6 +40,31 @@ const reviewSchema = mongoose.Schema({
   reviewRating: Number,
 });
 
+//create UserReviewSchema
+const userReviewSchema = mongoose.Schema({
+  username: String,
+  title: String,
+  text: String,
+  rating: Number
+})
+
+const UserReview = mongoose.model('UserReview', userReviewSchema);
+
+const saveUserReview = (username, title, text, rating, callback) => {
+  const newUserReview = new UserReview({
+    username,
+    title,
+    text,
+    rating
+  });
+  newUserReview.save((err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(err, data);
+    }
+  })
+}
 const Review = mongoose.model('Review', reviewSchema);
 
 const saveReview = (title, username, reviewText, reviewRating, cb) => {
@@ -137,8 +168,9 @@ const saveUser = (name, pass) => {
   });
   user.save((error) => {
     if (error) {
+      console.log('ERROR SAVING USER');
       console.error(error);
-    } 
+    }
   });
 };
 const findUser = (username, callback) => {
@@ -197,6 +229,14 @@ const passportValidate = (un, pw) => {
     });
   });
 };
+
+const booksquirmSchema = mongoose.Schema({
+
+});
+
+const booksquirm = {
+
+};
 module.exports = {
   comparePassword,
   findUser,
@@ -205,6 +245,7 @@ module.exports = {
   passportValidate,
   allBooks,
   addRating,
-  saveReview,
+  saveUserReview,
+  // saveReview,
   allReviews,
 };
