@@ -23,6 +23,12 @@ export default class MainList extends Component {
       e.preventDefault();
       this.props.reviewToggle(this.props.item);
     };
+
+    //function to link to userReviewSubmit form
+    this.linktoUserReview = (e) => {
+      e.preventDefault();
+      this.props.history('/UserReviewSubmit');
+    }
   }
 
   render() {
@@ -73,6 +79,13 @@ export default class MainList extends Component {
                             aria-label="..."
                             onClick={this.handleReviewClick.bind(this)}>
                       User Rating {' '}<span className="badge">{this.props.item.userRating}</span>
+                    </button>
+                    <button type="button"
+                      className="btn-group btn btn-success btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.linktoUserReview.bind(this)}>
+                     Write Review
                     </button>
                     <button type="button"
                             className="btn-group btn btn-danger btn-sm"

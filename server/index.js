@@ -22,7 +22,7 @@ const app = express();
 // tell the app to look for static files in these directories
 app.use(express.static(`${__dirname}/../client/dist`));
 // tell the app to parse HTTP body messages
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 
@@ -202,6 +202,7 @@ app.get('/googleData', (req, response) => {
       const coverImage = info.imageLinks.thumbnail; // url to large format thumbnail
       const ISBN10 = info.industryIdentifiers[0].identifier;
       let ISBN13;
+      
       if (info.industryIdentifiers[1]) {
         ISBN13 = info.industryIdentifiers[1].identifier;
       }
@@ -289,7 +290,7 @@ app.post('/UserReviewSubmit', (req, res) => {
   const newReview = {
 
   }
-  res.send(201, 'OK');
+  res.sendStatus(201, "okey, dokey");
   res.end();
 })
 

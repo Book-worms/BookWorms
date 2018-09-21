@@ -22,16 +22,16 @@ export default class UserReviewSubmit extends Component {
     e.preventDefault();
     //create object to store information for review
     const params = {
-      username: this.state.username,
+      // name: this.state.username,
       title: this.state.title,
       bookTitle: this.state.bookTitle,
       reviewText: this.state.reviewText,
       rating: this.state.rating
     }
-
+    console.log(params);
     //post request to server
     axios.post('/UserReviewSubmit', params)
-      .then(response => {
+      .then((response) => {
         console.log('axios post request from UserReviewSubmit.jsx: ', response);
       })
       .catch(err => {
@@ -71,7 +71,7 @@ export default class UserReviewSubmit extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-4">
-            <form role="form">
+            <form role="form" onSubmit={this.handleReviewSubmit}>
               <div className="form-group">
                 <div className="form-check form-check-inline">
                   <input className="form-check-input" type="checkbox" id="1" onChange={this.updateRating}/>
