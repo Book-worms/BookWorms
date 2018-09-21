@@ -40,6 +40,31 @@ const reviewSchema = mongoose.Schema({
   reviewRating: Number,
 });
 
+//create UserReviewSchema
+const userReviewSchema = mongoose.Schema({
+  username: String,
+  title: String,
+  text: String,
+  rating: Number
+})
+
+const UserReview = mongoose.model('UserReview', userReviewSchema);
+
+const saveUserReview = (username, title, text, rating, callback) => {
+  const newUserReview = new UserReview({
+    username,
+    title,
+    text,
+    rating
+  });
+  newUserReview.save((err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(err, data);
+    }
+  })
+}
 const Review = mongoose.model('Review', reviewSchema);
 
 const saveReview = (title, username, reviewText, reviewRating, cb) => {
@@ -220,6 +245,7 @@ module.exports = {
   passportValidate,
   allBooks,
   addRating,
-  saveReview,
+  saveUserReview,
+  // saveReview,
   allReviews,
 };
