@@ -11,17 +11,18 @@ import {
   Redirect,
   withRouter,
 } from 'react-router-dom';
-import axios from 'axios';
 import Nav1 from './components/Nav1.jsx';
 import Nav from './components/Nav.jsx';
 import DATA from './mockData';
 import REVIEWS from './mockReview';
+import axios from 'axios';
 import HomePage from './components/HomePage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import Logout from './containers/Logout.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import Main from './components/Main.jsx';
 import Auth from './modules/Auth';
+import UserReviewSubmit from './components/userReviewSubmit.jsx';
 
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
@@ -54,6 +55,7 @@ const PropsRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   constructor(props) {
     super(props);
+    // console.log(props)
     this.state = {
       items: [],
       reviews: [],
@@ -63,6 +65,7 @@ class App extends Component {
       openLibLink: null,
       ebay: null,
     };
+    console.log(this.state.username)
 
     // add function for axios call to ebay
     this.ebaySearch = (title) => {

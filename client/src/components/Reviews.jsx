@@ -1,6 +1,7 @@
 import React from 'react';
 import UserReviewsList from './UserReviewsList.jsx';
 import CriticsReviewsList from './CriticsReviewsList.jsx';
+import UserReviewSubmit from './UserReviewSubmit.jsx';
 
 const Rating = require('react-rating');
 
@@ -11,7 +12,6 @@ class Reviews extends React.Component {
       starValue: 0,
       value: '',
     };
-
     this.handleChange = (e) => {
       this.setState({ value: e.target.value });
     };
@@ -56,9 +56,14 @@ class Reviews extends React.Component {
                 </a>
               </div>
               <div className="media-body">
+<<<<<<< HEAD
                 <h4 className="media-heading">
                   {this.props.item.title}</h4>
                 {this.props.item.longDescript}
+=======
+                <h4 className="media-heading">{this.props.item.title}</h4>
+                {this.props.item.pt}
+>>>>>>> 032dd8f289cccaf44938fa3c5839e5d8fa100a11
               </div>
             </div>
           </div>
@@ -103,6 +108,10 @@ class Reviews extends React.Component {
               <h4 className="media-heading">User Reviews</h4>
               {this.props.reviews.map(review => <UserReviewsList review={review} key={review.user} />)}
 
+            </div>
+            <div className="container-fluid" style={{paddingTop: '20px' }}>
+              <h5 className="media-heading">Write Review</h5>
+              <UserReviewSubmit onClick={this.redirectToUserSubmission}>Write Review</UserReviewSubmit>
             </div>
           </div>
         </div>
