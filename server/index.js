@@ -205,8 +205,19 @@ app.get('/googleData', (req, response) => {
       let ebaydata = null;
 
       ebayHelpers.ebayPost(req.query.title).then((data) => {
-        ebaydata = data.data;
+        const ebayObject = `"${ebayHelpers.ebayFormatter(data.data).slice(29)}`;
+        const ebayObjectAgain = `"${ebayObject.split('').reverse().slice(2).join('')}`;
+        const strungObject = ebayObjectAgain.split('').reverse().join('');
+        const filterableObject = JSON.parse(strungObject);
+        const { findItemsByKeywordsResponse } = filterableObject;
+
+        ebaydata = strungObject;
+
+        // ebaydata = {
+        //   findItemsByKeywordsResponse,
+        // };
       });
+
 
 
       if (info.industryIdentifiers[1]) {
@@ -252,7 +263,7 @@ app.get('/googleData', (req, response) => {
                 ISBN13,
                 ebaydata,
               });
-              console.log(ebaydata);
+              // console.log(ebaydata);
             });
         });
     })
