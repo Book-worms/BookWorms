@@ -22,6 +22,7 @@ const app = express();
 // tell the app to look for static files in these directories
 app.use(express.static(`${__dirname}/../client/dist`));
 // tell the app to parse HTTP body messages
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
@@ -202,6 +203,7 @@ app.get('/googleData', (req, response) => {
       const coverImage = info.imageLinks.thumbnail; // url to large format thumbnail
       const ISBN10 = info.industryIdentifiers[0].identifier;
       let ISBN13;
+
       if (info.industryIdentifiers[1]) {
         ISBN13 = info.industryIdentifiers[1].identifier;
       }
@@ -283,30 +285,22 @@ app.get('/goodreads', (req, res) => {
 
 // TEAM AMERICAIN IDOL WORK STARTS HERE //
 
-// app.post('/ebaybay',
-//   (request, response, body) => {
-//     console.log('APP POST');
-//     // console.log(request.body);
-//     const keyWordToEncode = 'scarface';
-//     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
+//post request to server for userReviews
+app.post('/userReviewSubmit', (req, res) => {
+  console.log(req.body, 'post request from server/index.js')
+  // const newReview = {
+  //   username: req.body.username,
+  //   title: req.body.title,
+  //   reviewText: req.body.reviewText,
+  //   rating: req.body.rating
+  // }
+  // db.saveUserReview(newReview, res);
+  res.sendStatus(201);
+  // res.send(req.body);
+  res.end();
+})
 
-//     console.log(keyWordToEncode, keyWordEncoded);
 
-//     ebayHelpers.ebayPost(keyWordEncoded,
-//       (error) => {
-//         if (error) {
-//           // console.log('error inside ebaypost index.js: ', error);
-//           // console.log(error);
-//           // console.log('error inside post');
-//         } else {
-//           // console.log(response);
-//           const parsedBody = JSON.parse(response.body);
-//           // console.log('parsedBody:', parsedBody);
-//         }
-//       });
-//     response.send(201, 'OK');
-//     response.end();
-//   });
 app.get('/ebaybay',
   (req, res) => {
     const keyWordToEncode = req.body;

@@ -33,12 +33,12 @@ const userSchema = mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// const reviewSchema = mongoose.Schema({
-//   title: String,
-//   username: String,
-//   reviewText: String,
-//   reviewRating: Number,
-// });
+const reviewSchema = mongoose.Schema({
+  title: String,
+  username: String,
+  reviewText: String,
+  reviewRating: Number,
+});
 
 //create UserReviewSchema
 const userReviewSchema = mongoose.Schema({
@@ -65,7 +65,7 @@ const saveUserReview = (username, title, text, rating, callback) => {
     }
   })
 }
-// const Review = mongoose.model('Review', reviewSchema);
+const Review = mongoose.model('Review', reviewSchema);
 
 const saveReview = (title, username, reviewText, reviewRating, cb) => {
   const review = new Review({
