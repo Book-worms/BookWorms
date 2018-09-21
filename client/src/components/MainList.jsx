@@ -8,6 +8,7 @@ import UserReviewSubmit from './userReviewSubmit.jsx';
 export default class MainList extends Component {
   constructor(props) {
     // console.log(props, 'MainList.jsx')
+    // console.log('test');
     super(props);
 
 
@@ -44,104 +45,40 @@ export default class MainList extends Component {
                     <img className="media-object" src={this.props.item.coverImage} alt="book cover" />
                   </a>
                   <div className="btn-group-vertical" role="group" aria-label="...">
-<<<<<<< HEAD
-                    <button
-                      type="button"
+                    <button type="button"
                       className="btn-group btn btn-primary btn-sm"
                       role="group"
                       aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-
-                      {' '}
-                      <span className="badge">{this.props.item.aggregateRating}</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn-group btn btn-info btn-sm"
-                      role="group"
-                      aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      Google Books
-{' '}
-                      <span className="badge">{this.props.item.rating}</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn-group btn btn-info btn-sm"
-                      role="group"
-                      aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      Library Thing
-{' '}
-                      <span className="badge">{this.props.item.libThingRating}</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn-group btn btn-info btn-sm"
-                      role="group"
-                      aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      GoodReads
-{' '}
-                      <span className="badge">{this.props.item.gReadsRating}</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn-group btn btn-info btn-sm"
-                      role="group"
-                      aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-                      User Rating
-{' '}
-                      <span className="badge">{this.props.item.userRating}</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn-group btn btn-danger btn-sm"
-                      role="group"
-                      aria-label="..."
-                      onClick={this.handleReviewClick.bind(this)}
-                    >
-=======
-                    <button type="button"
-                            className="btn-group btn btn-primary btn-sm"
-                            role="group"
-                            aria-label="..."
-                            onClick={this.handleReviewClick.bind(this)}>
+                      onClick={this.handleReviewClick.bind(this)}>
                       Bookworms {' '}<span className="badge">{this.props.item.aggregateRating}</span>
                     </button>
                     <button type="button"
-                            className="btn-group btn btn-info btn-sm"
-                            role="group"
-                            aria-label="..."
-                            onClick={this.handleReviewClick.bind(this)}>
+                      className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.handleReviewClick.bind(this)}>
                       Google Books {' '}<span className="badge">{this.props.item.rating}</span>
                     </button>
                     <button type="button"
-                            className="btn-group btn btn-info btn-sm"
-                            role="group"
-                            aria-label="..."
-                            onClick={this.handleReviewClick.bind(this)}>
+                      className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.handleReviewClick.bind(this)}>
                       Library Thing {' '}<span className="badge">
-                      {this.props.item.libThingRating}</span>
+                        {this.props.item.libThingRating}</span>
                     </button>
                     <button type="button"
-                            className="btn-group btn btn-info btn-sm"
-                            role="group"
-                            aria-label="..."
-                            onClick={this.handleReviewClick.bind(this)}>
+                      className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.handleReviewClick.bind(this)}>
                       GoodReads {' '}<span className="badge">{this.props.item.gReadsRating}</span>
                     </button>
                     <button type="button"
-                            className="btn-group btn btn-info btn-sm"
-                            role="group"
-                            aria-label="..."
-                            onClick={this.handleReviewClick.bind(this)}>
+                      className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.handleReviewClick.bind(this)}>
                       User Rating {' '}<span className="badge">{this.props.item.userRating}</span>
                     </button>
                     <button type="button"
@@ -149,14 +86,13 @@ export default class MainList extends Component {
                       role="group"
                       aria-label="..."
                       onClick={this.linktoUserReview.bind(this)}>
-                     Write Review
+                      Write Review
                     </button>
                     <button type="button"
-                            className="btn-group btn btn-danger btn-sm"
-                            role="group"
-                            aria-label="..."
-                            onClick={this.handleReviewClick.bind(this)}>
->>>>>>> 032dd8f289cccaf44938fa3c5839e5d8fa100a11
+                      className="btn-group btn btn-danger btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.handleReviewClick.bind(this)}>
                       Review
                       {/* <span className="glyphicon glyphicon-star-empty" aria-hidden="true"></span> */}
                     </button>
@@ -168,7 +104,7 @@ export default class MainList extends Component {
                   </a>
                   {this.props.item.longDescript}
                   <div>
-                    <UserReviewSubmit title={this.props.item.title}/>
+                    <UserReviewSubmit title={this.props.item.title} />
                   </div>
                 </div>
                 <div>

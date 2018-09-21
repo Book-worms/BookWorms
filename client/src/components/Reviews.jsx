@@ -56,14 +56,8 @@ class Reviews extends React.Component {
                 </a>
               </div>
               <div className="media-body">
-<<<<<<< HEAD
-                <h4 className="media-heading">
-                  {this.props.item.title}</h4>
-                {this.props.item.longDescript}
-=======
                 <h4 className="media-heading">{this.props.item.title}</h4>
                 {this.props.item.pt}
->>>>>>> 032dd8f289cccaf44938fa3c5839e5d8fa100a11
               </div>
             </div>
           </div>
@@ -109,7 +103,7 @@ class Reviews extends React.Component {
               {this.props.reviews.map(review => <UserReviewsList review={review} key={review.user} />)}
 
             </div>
-            <div className="container-fluid" style={{paddingTop: '20px' }}>
+            <div className="container-fluid" style={{ paddingTop: '20px' }}>
               <h5 className="media-heading">Write Review</h5>
               <UserReviewSubmit onClick={this.redirectToUserSubmission}>Write Review</UserReviewSubmit>
             </div>
