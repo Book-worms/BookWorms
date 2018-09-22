@@ -1,5 +1,4 @@
 
-
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 
@@ -49,7 +48,7 @@ const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 app.use(morgan('tiny'));
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3030));
 // start the server
 app.listen(app.get('port'), () => {
   console.log(`Server is running on port ${app.get('port')}`);
