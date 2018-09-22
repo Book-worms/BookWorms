@@ -1,7 +1,6 @@
 /* eslint-disable prefer-destructuring */
 const axios = require('axios');
 
-const config = require('../config.js');
 require('dotenv').config();
 
 const goodReads = process.env.GOODREADS_KEY;
