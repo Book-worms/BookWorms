@@ -149,7 +149,6 @@ export default class UserReviewSubmit extends Component {
             </div>
           </div>
         </div>
-      // </div>
     )
   }
 }
