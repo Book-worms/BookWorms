@@ -144,7 +144,7 @@ export default class MainList extends Component {
                     {this.state.userReviews.map(review => {
                       console.log(review)
                       return (
-                        <div >
+                        <div key={review.id}>
                         <h3>{review.title}</h3>
                         <dl>
                           <dt>
