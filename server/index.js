@@ -1,5 +1,4 @@
 
-
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 
@@ -22,6 +21,7 @@ const app = express();
 // tell the app to look for static files in these directories
 app.use(express.static(`${__dirname}/../client/dist`));
 // tell the app to parse HTTP body messages
+//added line to have bodyParser parse incoming json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
@@ -48,7 +48,7 @@ const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 app.use(morgan('tiny'));
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3030));
 // start the server
 app.listen(app.get('port'), () => {
   console.log(`Server is running on port ${app.get('port')}`);
@@ -302,3 +302,70 @@ app.get('/goodreads', (req, res) => {
     })
     .catch(err => console.log('error line 273'));
 });
+<<<<<<< HEAD
+=======
+
+
+// TEAM AMERICAIN IDOL WORK STARTS HERE //
+
+//post request to server for userReviews
+app.post('/userReviewSubmit', (req, res) => {
+  // console.log(req.body.rating, 'post request from server/index.js')
+  const title = req.body.title;
+  const bookTitle = req.body.bookTitle;
+  const reviewText = req.body.reviewText;
+  const rating = req.body.rating;
+  const created_at = Date.now();
+
+  const newReview = {
+    title,
+    bookTitle,
+    reviewText,
+    rating,
+    created_at
+  }
+  db.saveUserReview(newReview, res);
+  res.sendStatus(201);
+  res.end();
+})
+
+app.get('/userreviews', (req, res) => {
+  db.findUserReviews((err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(data, 'data')
+      const displayedReviewData = data.map(review => {
+        console.log(review);
+        return {
+          id: review.id,
+          title: review.title,
+          bookTitle: review.bookTitle,
+          reviewText: review.reviewText,
+          rating: review.rating
+        }
+      })
+      // console.log(displayedReviewData, 'display data');
+      res.send(displayedReviewData);
+    }
+  })
+})
+
+
+// app.get('/ebaybay',
+//   (req, res) => {
+//     const keyWordToEncode = req.body;
+//     console.log(keyWordToEncode);
+//     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
+//     console.log(keyWordEncoded);
+
+//     ebayHelpers.ebayPost(keyWordEncoded,
+//       (err, res) => {
+//         if (err) {
+//           console.log('ebayhelpers erro');
+//         } else {
+//           console.log('ebayhelpers success', res);
+//         }
+//       });
+//   });
+>>>>>>> cfc08e6104e95f375f3bfd6dd1020befaeb1c40f
