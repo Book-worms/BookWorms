@@ -205,20 +205,22 @@ app.get('/googleData', (req, response) => {
       let ISBN13;
       let ebaydata = null;
 
-      ebayHelpers.ebayPost(req.query.title).then((data) => {
-        const ebayObject = `"${ebayHelpers.ebayFormatter(data.data).slice(29)}`;
-        const ebayObjectAgain = `"${ebayObject.split('').reverse().slice(2).join('')}`;
-        const strungObject = ebayObjectAgain.split('').reverse().join('');
-        const filterableObject = JSON.parse(strungObject);
-        const { findItemsByKeywordsResponse } = filterableObject;
 
-        ebaydata = strungObject;
+      ebayHelpers.ebayPost(req.query.title).then(({ data }) => {
+        const fullObject = ebayHelpers.createFullItemInformation(
+          {},
+          ebayHelpers.getItemInformation(data),
+          ebayHelpers.getItemUrl(data),
+        );
 
-        // ebaydata = {
-        //   findItemsByKeywordsResponse,
-        // };
+        ebaydata = Object.values(fullObject);
+        console.log(ebaydata);
+        console.log(Object.keys(fullObject));
+      }).catch((error) => {
+        if (error) {
+          console.log(error);
+        }
       });
-
 
 
       if (info.industryIdentifiers[1]) {

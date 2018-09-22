@@ -10,6 +10,7 @@ export default class MainList extends Component {
     // console.log(props, 'MainList.jsx')
     // console.log('test');
     super(props);
+    // console.log(props, 'mainlist.jsx');
 
 
     this.state = {
@@ -30,6 +31,8 @@ export default class MainList extends Component {
       e.preventDefault();
       this.props.history('/UserReviewSubmit');
     }
+
+    //this.ebaytitle = this.props.item.ebaydata;
   }
 
   render() {
@@ -108,7 +111,7 @@ export default class MainList extends Component {
                   </div>
                 </div>
                 <div>
-                  {this.props.item.ebaydata}
+                  Title : {this.props.item.ebaydata}
                 </div>
                 <div className="media-right">
                   <ul className="nav nav-pills">

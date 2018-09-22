@@ -63,9 +63,10 @@ class App extends Component {
       authenticated: false,
       username: null,
       openLibLink: null,
-      ebay: null,
+      ebaydata: [],
+      // ebay: null,
     };
-    console.log(this.state.username)
+    // console.log(this.state.username)
 
     // add function for axios call to ebay
     this.ebaySearch = (title) => {
@@ -88,6 +89,7 @@ class App extends Component {
         .then((response) => {
           const items = [response.data];
           const isbn = response.data.ISBN13;
+          // console.log(this.props.item, 'index.jsx');
           axios.get('/openLibLink', {
             params: { isbn },
           })
@@ -188,7 +190,6 @@ class App extends Component {
     // set current username if authenticated
     this.setState({ authenticated: Auth.isUserAuthenticated(), username: sessionStorage.getItem('username') });
   }
-
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
