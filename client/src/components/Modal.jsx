@@ -61,7 +61,6 @@ export default class ModalReview extends Component {
           <UserReviewSubmit title={this.props.title}/>
           <div>
             <span style={closeButtonStyle} onClick={e => {this.onClose(e)}}>X</span>
-          {/* <button onClick={e => {this.onClose(e)}}>x</button> */}
           </div>
         </div>
       </div>
