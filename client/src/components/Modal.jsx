@@ -19,11 +19,16 @@ const backdropStyle = {
   padding: 50
 };
 
+const closeButtonStyle = {
+  position: "absolute", 
+  right: -10, 
+  top: -10, 
+  zIndex: 1000,
+  backgroundColor: 'red'
+}
 export default class ModalReview extends Component {
   constructor(props) {
     super(props);
-    // console.log(props, "modal")
-    // this.onClose = this.onClose.bind(this);
     this.state = {
       userReview: []
     }
@@ -54,9 +59,12 @@ export default class ModalReview extends Component {
       <div style={backdropStyle}>
         <div style={modalStyle}>
           <UserReviewSubmit title={this.props.title}/>
-          <button onClick={e => {this.onClose(e)}}>x</button>
+          <div>
+            <span style={closeButtonStyle} onClick={e => {this.onClose(e)}}>X</span>
+          </div>
         </div>
       </div>
     )
   }
 }
+//
