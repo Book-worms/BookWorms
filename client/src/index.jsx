@@ -64,6 +64,7 @@ class App extends Component {
       username: null,
       openLibLink: null,
       ebaydata: [],
+      ebaymoviedata: [],
       // ebay: null,
     };
     // console.log(this.state.username)
@@ -204,6 +205,7 @@ class App extends Component {
                       {...props}
                       items={this.state.items}
                       ebaydata={this.state.ebaydata}
+                      ebaymoviedata={this.state.ebaymoviedata}
                       reviews={this.state.reviews}
                       reviewToggle={this.reviewToggle.bind(this)}
                       reviewToggled={this.state.reviewToggled}
