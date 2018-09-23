@@ -1,6 +1,6 @@
 # BookWorms
 > Bookworms! an online metacritic for books
-newtest
+newtestch
 
 ## Team
 
@@ -21,7 +21,7 @@ newtest
 1. [Contributing](#contributing)
 
 
-## Usage
+## Usages
 
 > This projects uses:
   - React v15

@@ -232,6 +232,22 @@ app.get('/googleData', (req, response) => {
         }
       });
 
+      ebayHelpers.ebayMoviePost(req.query.title).then(({ data }) => {
+        const fullMovieObject = ebayHelpers.createFullItemInformation(
+          {},
+          ebayHelpers.getItemInformation(data),
+          ebayHelpers.getItemUrl(data),
+        );
+
+        ebaymoviedata = Object.values(fullMovieObject);
+        console.log(ebaymoviedata);
+        console.log(Object.keys(fullMovieObject));
+      }).catch((error) => {
+        if (error) {
+          console.log(error);
+        }
+      });
+
 
       if (info.industryIdentifiers[1]) {
         ISBN13 = info.industryIdentifiers[1].identifier;
