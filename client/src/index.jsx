@@ -55,7 +55,7 @@ const PropsRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   constructor(props) {
     super(props);
-    // console.log(props)
+    console.log(props)
     this.state = {
       items: [],
       reviews: [],
@@ -63,7 +63,11 @@ class App extends Component {
       authenticated: false,
       username: null,
       openLibLink: null,
-      ebaydata: [],
+      ebayTitle: null,
+      ebayGalleryURL: null,
+      ebayViewItemURL: null,
+      ebayItemURL: null,
+      // ebaydata: [],
       // ebay: null,
     };
     // console.log(this.state.username)
@@ -203,7 +207,8 @@ class App extends Component {
                     <Nav
                       {...props}
                       items={this.state.items}
-                      ebaydata={this.state.ebaydata}
+                      // ebaydata={this.state.ebaydata}
+                      ebayTitle={this.state.ebayTitle}
                       reviews={this.state.reviews}
                       reviewToggle={this.reviewToggle.bind(this)}
                       reviewToggled={this.state.reviewToggled}

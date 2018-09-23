@@ -203,7 +203,10 @@ app.get('/googleData', (req, response) => {
       const coverImage = info.imageLinks.thumbnail; // url to large format thumbnail
       const ISBN10 = info.industryIdentifiers[0].identifier;
       let ISBN13;
-      let ebaydata = null;
+      let ebayTitle = null;
+      let ebayGalleryURL = null;
+      let ebayViewItemURL = null;
+      let ebayItemURL = null;
 
 
       ebayHelpers.ebayPost(req.query.title).then(({ data }) => {
@@ -212,8 +215,16 @@ app.get('/googleData', (req, response) => {
           ebayHelpers.getItemInformation(data),
           ebayHelpers.getItemUrl(data),
         );
-        ebaydata = Object.values(fullObject);
-        console.log(ebaydata);
+        ebayTitle = fullObject.title;
+        ebayGalleryURL = fullObject.galleryURL;
+        ebayViewItemURL = fullObject.viewItemURL,
+        ebayItemURL = fullObject.itemURL;
+        console.log(ebayTitle)
+        console.log(ebayGalleryURL)
+        console.log(ebayViewItemURL)
+        console.log(ebayItemURL)
+        // ebaydata = Object.values(fullObject);
+        // console.log(ebaydata);
         // console.log(Object.keys(fullObject));
       }).catch((error) => {
         if (error) {
@@ -263,7 +274,11 @@ app.get('/googleData', (req, response) => {
                 userRating: 2.75,
                 aggregateRating,
                 ISBN13,
-                ebaydata,
+                ebayTitle,
+                ebayGalleryURL,
+                ebayViewItemURL,
+                ebayItemURL
+                // ebaydata,
               });
               // console.log(ebaydata);
             });

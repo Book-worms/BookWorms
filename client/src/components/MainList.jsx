@@ -10,7 +10,7 @@ import axios from 'axios';
 export default class MainList extends Component {
   constructor(props) {
     super(props);
-    console.log(props.item.ebaydata, 'mainlist.jsx');
+    // console.log(props.item.ebayTitle, 'mainlist.jsx');
 
 
     this.state = {
@@ -175,7 +175,10 @@ export default class MainList extends Component {
                       : <div />}
                   </ul>
                   <div>
-                    Title: 
+                    Title: {this.props.item.ebayTitle}
+                    <a href="http://www.ebay.com/itm/Charlottes-Web-Hardcover-Book-Dust-Jacket-1952-E-B-White-/401602186871" >
+                      {this.props.item.ebayViewItemURL}
+                    </a>
                   </div>
                 </div>
               </div>
