@@ -180,11 +180,14 @@ export default class MainList extends Component {
                       </ul>
                       <h3>Link to Buy</h3>
                         <a href={this.props.item.ebayViewItemURL} >
-                          <div className="list-item">{this.props.item.ebayViewItemURL}</div>
+                          <div>{this.props.item.ebayViewItemURL}</div>
                         </a>
                       <h3>Suggested Items</h3>
-                        <div className="list-item">{this.props.item.movieTitle}</div>
+                        <div>{this.props.item.movieTitle}</div>
                         <img src={this.props.item.movieGalleryURL}/>
+                        <a href={this.props.item.movieViewItemURL}>
+                          <div>{this.props.item.movieViewItemURL}</div>
+                        </a>
                     </div>
                   </div>
                 </div>

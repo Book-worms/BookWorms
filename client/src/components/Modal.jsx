@@ -14,8 +14,8 @@ const backdropStyle = {
   ...modalStyle,
   position: 'fixed',
   top: 0, bottom: 0, left: 0, right: 0,
-  zIndex: 'auto',
-  backgroundColor: '	#C0C0C0',
+  zIndex: 1000,
+  backgroundColor: '#C0C0C0',
   padding: 50
 };
 
@@ -41,14 +41,12 @@ export default class ModalReview extends Component {
   componentDidMount() {
     axios.get('/userreviews')
       .then(response => {
-        console.log(response, 'line 74');
         this.setState({ userReview: response.data }, () => {
         })
       })
       .catch(err => {
         console.error(err);
       })
-    console.log(this.state.userReview)
   }
 
   render() {
