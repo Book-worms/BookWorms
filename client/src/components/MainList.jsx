@@ -176,9 +176,12 @@ export default class MainList extends Component {
                   </ul>
                   <div>
                     Title: {this.props.item.ebayTitle}
-                    <a href="http://www.ebay.com/itm/Charlottes-Web-Hardcover-Book-Dust-Jacket-1952-E-B-White-/401602186871" >
+                    <a href={this.props.item.ebayViewItemURL} >
                       {this.props.item.ebayViewItemURL}
                     </a>
+                  </div>
+                  <div>
+                    Movie: {this.props.item.movieTitle}
                   </div>
                 </div>
               </div>
