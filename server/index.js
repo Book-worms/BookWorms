@@ -212,10 +212,9 @@ app.get('/googleData', (req, response) => {
           ebayHelpers.getItemInformation(data),
           ebayHelpers.getItemUrl(data),
         );
-
         ebaydata = Object.values(fullObject);
         console.log(ebaydata);
-        console.log(Object.keys(fullObject));
+        // console.log(Object.keys(fullObject));
       }).catch((error) => {
         if (error) {
           console.log(error);
@@ -302,10 +301,6 @@ app.get('/goodreads', (req, res) => {
     })
     .catch(err => console.log('error line 273'));
 });
-<<<<<<< HEAD
-=======
-
-
 // TEAM AMERICAIN IDOL WORK STARTS HERE //
 
 //post request to server for userReviews
@@ -350,22 +345,3 @@ app.get('/userreviews', (req, res) => {
     }
   })
 })
-
-
-// app.get('/ebaybay',
-//   (req, res) => {
-//     const keyWordToEncode = req.body;
-//     console.log(keyWordToEncode);
-//     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
-//     console.log(keyWordEncoded);
-
-//     ebayHelpers.ebayPost(keyWordEncoded,
-//       (err, res) => {
-//         if (err) {
-//           console.log('ebayhelpers erro');
-//         } else {
-//           console.log('ebayhelpers success', res);
-//         }
-//       });
-//   });
->>>>>>> cfc08e6104e95f375f3bfd6dd1020befaeb1c40f

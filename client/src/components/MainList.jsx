@@ -10,7 +10,7 @@ import axios from 'axios';
 export default class MainList extends Component {
   constructor(props) {
     super(props);
-    // console.log(props, 'mainlist.jsx');
+    console.log(props.item.ebaydata, 'mainlist.jsx');
 
 
     this.state = {
@@ -100,31 +100,31 @@ export default class MainList extends Component {
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      BookWorms {' '}<span className="badge">{this.props.ite.aggregateRating}</span>
+                      BookWorms {' '}<span className="badge">{this.props.item.aggregateRating}</span>
                     </button>
                     <button className="btn-group btn btn-info btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      Google Books {' '}<span className="badge">{this.props.ite.rating}</span>
+                      Google Books {' '}<span className="badge">{this.props.item.rating}</span>
                     </button>
                     <button className="btn-group btn btn-info btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      Library Things {' '}<span className="badge">{this.props.ite.libThingRating}</span>
+                      Library Things {' '}<span className="badge">{this.props.item.libThingRating}</span>
                     </button>
                     <button className="btn-group btn btn-info btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      GoodReads {' '}<span className="badge">{this.props.ite.gReadsRating}</span>
+                      GoodReads {' '}<span className="badge">{this.props.item.gReadsRating}</span>
                     </button>
                     <button className="btn-group btn btn-info btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      User Rating {' '}<span className="badge">{this.props.ite.userRating}</span>
+                      User Rating {' '}<span className="badge">{this.props.item.userRating}</span>
                     </button>
                     <button className="btn-group btn btn-success btn-sm"
                       role="group"
@@ -142,7 +142,7 @@ export default class MainList extends Component {
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      Review {' '}<span className="badge">{this.props.ite.aggregateRating}</span>
+                      Review
                     </button>
                   </div>
                 </div>
@@ -167,15 +167,16 @@ export default class MainList extends Component {
                     })}
                   </div>
                 </div>
-                <div>
-                  Title: {this.props.item.ebaydata}
-                </div>
+                
                 <div className="media-right">
                   <ul className="nav nav-pills">
                     {this.props.openLibLink
                       ? <li role="presentation" className="enabled"><a onClick={() => window.open(this.props.openLibLink, '_blank')}>Open Library</a></li>
                       : <div />}
                   </ul>
+                  <div>
+                    Title: 
+                  </div>
                 </div>
               </div>
             </div>
