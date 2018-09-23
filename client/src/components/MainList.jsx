@@ -51,10 +51,10 @@ export default class MainList extends Component {
     axios.get('userreviews')
       .then(response => {
         console.log(response, 'line 48 mainlist.jsx')
-        this.setState({ 
+        this.setState({
           userReviews: response.data,
           showUserReview: !this.state.showUserReview
-         }, () => {
+        }, () => {
           console.log(this.state.userReviews)
         })
       })
@@ -67,10 +67,10 @@ export default class MainList extends Component {
     axios.get('userreviews')
       .then(response => {
         console.log(response, 'line 48 mainlist.jsx')
-        this.setState({ 
+        this.setState({
           userReviews: response.data,
           showUserReview: !this.state.showUserReview
-         }, () => {
+        }, () => {
           console.log(this.state.userReviews)
         })
       })
@@ -79,7 +79,7 @@ export default class MainList extends Component {
       })
   }
 
-  
+
 
   render() {
     return (
