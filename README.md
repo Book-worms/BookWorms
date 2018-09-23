@@ -21,7 +21,7 @@ newtestch
 1. [Contributing](#contributing)
 
 
-## Usage
+## Usages
 
 > This projects uses:
   - React v15
