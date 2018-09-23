@@ -147,41 +147,45 @@ export default class MainList extends Component {
                   </div>
                 </div>
                 <div className="media-body">
-                  <a href="#" onClick={this.handleReviewClick.bind(this)}>
-                    <h4 className="media-heading">{this.props.item.title}</h4>
-                  </a>
-                  {this.props.item.longDescript}
-                  <div>
-                    {this.state.userReviews.map(review => {
-                      return (
-                        <div>
-                          <h3>{review.title}</h3>
-                          <dl>
-                            <dt>
-                              Rating: {review.rating}
-                            </dt>
-                          </dl>
-                          <p>{review.reviewText}</p>
-                        </div>
-                      )
-                    })}
+                  <div className="col-md-8">
+                    <a href="#" onClick={this.handleReviewClick.bind(this)}>
+                      <h4 className="media-heading">{this.props.item.title}</h4>
+                    </a>
+                    {this.props.item.longDescript}
+                    <div>
+                      {this.state.userReviews.map(review => {
+                        return (
+                          <div>
+                            <h3>{review.title}</h3>
+                            <dl>
+                              <dt>
+                                Rating: {review.rating}
+                              </dt>
+                            </dl>
+                            <p>{review.reviewText}</p>
+                          </div>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
                 
                 <div className="media-right">
-                  <ul className="nav nav-pills">
-                    {this.props.openLibLink
-                      ? <li role="presentation" className="enabled"><a onClick={() => window.open(this.props.openLibLink, '_blank')}>Open Library</a></li>
-                      : <div />}
-                  </ul>
-                  <div>
-                    Title: {this.props.item.ebayTitle}
-                    <a href={this.props.item.ebayViewItemURL} >
-                      {this.props.item.ebayViewItemURL}
-                    </a>
-                  </div>
-                  <div>
-                    Movie: {this.props.item.movieTitle}
+                  <div className="row">
+                    <div className="col-md-8">
+                      <ul className="nav nav-pills">
+                        {this.props.openLibLink
+                          ? <li role="presentation" className="enabled"><a onClick={() => window.open(this.props.openLibLink, '_blank')}>Open Library</a></li>
+                          : <div />}
+                      </ul>
+                      <h3>Link to Buy</h3>
+                        <a href={this.props.item.ebayViewItemURL} >
+                          <div className="list-item">{this.props.item.ebayViewItemURL}</div>
+                        </a>
+                      <h3>Suggested Items</h3>
+                        <div className="list-item">{this.props.item.movieTitle}</div>
+                        <img src={this.props.item.movieGalleryURL}/>
+                    </div>
                   </div>
                 </div>
               </div>
