@@ -9,11 +9,8 @@ import axios from 'axios';
 
 export default class MainList extends Component {
   constructor(props) {
-<<<<<<< HEAD
     // console.log(props, 'MainList.jsx')
     // console.log('test');
-=======
->>>>>>> cfc08e6104e95f375f3bfd6dd1020befaeb1c40f
     super(props);
     // console.log(props, 'mainlist.jsx');
 
@@ -39,11 +36,6 @@ export default class MainList extends Component {
     this.linktoUserReview = (e) => {
       e.preventDefault();
       this.props.history('/UserReviewSubmit');
-<<<<<<< HEAD
-    }
-
-    //this.ebaytitle = this.props.item.ebaydata;
-=======
     };
     //bind this to showModal method
     this.showModal = this.showModal.bind(this);
@@ -55,17 +47,16 @@ export default class MainList extends Component {
       showModal: !this.state.showModal
     })
     console.log('clicked')
->>>>>>> cfc08e6104e95f375f3bfd6dd1020befaeb1c40f
   }
 
   getUserReviews() {
     axios.get('userreviews')
       .then(response => {
         console.log(response, 'line 48 mainlist.jsx')
-        this.setState({ 
+        this.setState({
           userReviews: response.data,
           showUserReview: !this.state.showUserReview
-         }, () => {
+        }, () => {
           console.log(this.state.userReviews)
         })
       })
@@ -74,7 +65,7 @@ export default class MainList extends Component {
       })
   }
 
-  
+
 
   render() {
     return (
@@ -129,20 +120,14 @@ export default class MainList extends Component {
                       className="btn-group btn btn-success btn-sm"
                       role="group"
                       aria-label="..."
-<<<<<<< HEAD
-                      onClick={this.linktoUserReview.bind(this)}>
-                      Write Review
-                    </button>
-=======
                       value="show modal"
                       // onClick={this.linktoUserReview.bind(this)}
                       onClick={this.showModal}>Write Review</button>
                     <button type="button"
-                            className="btn-group btn btn-primary btn-sm"
-                            role="group"
-                            aria-label="..."
-                            onClick={this.getUserReviews}>User Reviews</button>
->>>>>>> cfc08e6104e95f375f3bfd6dd1020befaeb1c40f
+                      className="btn-group btn btn-primary btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.getUserReviews}>User Reviews</button>
                     <button type="button"
                       className="btn-group btn btn-danger btn-sm"
                       role="group"
@@ -159,23 +144,19 @@ export default class MainList extends Component {
                   </a>
                   {this.props.item.longDescript}
                   <div>
-<<<<<<< HEAD
-                    <UserReviewSubmit title={this.props.item.title} />
-=======
                     {this.state.userReviews.map(review => {
                       console.log(review)
                       return (
                         <div >
-                        <h3>{review.title}</h3>
-                        <dl>
-                          <dt>
-                            Rating: {review.rating}
-                          </dt>
-                        </dl>
-                        <p>{review.reviewText}</p>
-                      </div>)
+                          <h3>{review.title}</h3>
+                          <dl>
+                            <dt>
+                              Rating: {review.rating}
+                            </dt>
+                          </dl>
+                          <p>{review.reviewText}</p>
+                        </div>)
                     })}
->>>>>>> cfc08e6104e95f375f3bfd6dd1020befaeb1c40f
                   </div>
                 </div>
                 <div>

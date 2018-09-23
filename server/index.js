@@ -302,8 +302,6 @@ app.get('/goodreads', (req, res) => {
     })
     .catch(err => console.log('error line 273'));
 });
-<<<<<<< HEAD
-=======
 
 
 // TEAM AMERICAIN IDOL WORK STARTS HERE //
@@ -368,4 +366,3 @@ app.get('/userreviews', (req, res) => {
 //         }
 //       });
 //   });
->>>>>>> cfc08e6104e95f375f3bfd6dd1020befaeb1c40f
