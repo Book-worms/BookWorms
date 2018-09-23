@@ -207,6 +207,10 @@ app.get('/googleData', (req, response) => {
       let ebayGalleryURL = null;
       let ebayViewItemURL = null;
       let ebayItemURL = null;
+      let movieTitle = null;
+      let movieGalleryURL = null;
+      let movieViewItemURL = null;
+      let movieItemURL = null;
 
 
       ebayHelpers.ebayPost(req.query.title).then(({ data }) => {
@@ -219,13 +223,6 @@ app.get('/googleData', (req, response) => {
         ebayGalleryURL = fullObject.galleryURL;
         ebayViewItemURL = fullObject.viewItemURL,
         ebayItemURL = fullObject.itemURL;
-        console.log(ebayTitle)
-        console.log(ebayGalleryURL)
-        console.log(ebayViewItemURL)
-        console.log(ebayItemURL)
-        // ebaydata = Object.values(fullObject);
-        // console.log(ebaydata);
-        // console.log(Object.keys(fullObject));
       }).catch((error) => {
         if (error) {
           console.log(error);
@@ -238,10 +235,13 @@ app.get('/googleData', (req, response) => {
           ebayHelpers.getItemInformation(data),
           ebayHelpers.getItemUrl(data),
         );
-
-        ebaymoviedata = Object.values(fullMovieObject);
-        console.log(ebaymoviedata);
-        console.log(Object.keys(fullMovieObject));
+        movieTitle = fullMovieObject.title;
+        movieGalleryURL = fullMovieObject.galleryURL;
+        movieViewItemURL = fullMovieObject.viewItemURL;
+        movieItemURL = fullMovieObject.itemURL;
+        // ebaymoviedata = Object.values(fullMovieObject);
+        // console.log(ebaymoviedata, 'moviedata');
+        // console.log(Object.keys(fullMovieObject), 'moviedatakeys');
       }).catch((error) => {
         if (error) {
           console.log(error);
@@ -293,7 +293,11 @@ app.get('/googleData', (req, response) => {
                 ebayTitle,
                 ebayGalleryURL,
                 ebayViewItemURL,
-                ebayItemURL
+                ebayItemURL,
+                movieTitle,
+                movieGalleryURL,
+                movieViewItemURL,
+                movieItemURL
                 // ebaydata,
               });
               // console.log(ebaydata);

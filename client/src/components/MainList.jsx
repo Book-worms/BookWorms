@@ -5,6 +5,7 @@ import UserDisplay from './userReviewDisplay.jsx';
 import ModalReview from './Modal.jsx';
 import UserReviewSubmit from './UserReviewSubmit.jsx';
 import axios from 'axios';
+import Links from './links.jsx';
 
 
 export default class MainList extends Component {
@@ -17,7 +18,8 @@ export default class MainList extends Component {
       reviewInput: null,
       showModal: false,
       userReviews: [],
-      showUserReview: false
+      showUserReview: false,
+      showLinks: false
     };
 
     this.handleSearchClick = (e) => {
@@ -31,55 +33,40 @@ export default class MainList extends Component {
     };
 
     //function to link to userReviewSubmit form
-    this.linktoUserReview = (e) => {
-      e.preventDefault();
-      this.props.history('/UserReviewSubmit');
-    };
+    // this.linktoUserReview = (e) => {
+    //   e.preventDefault();
+    //   this.props.history('/UserReviewSubmit');
+    // };
     //bind this to showModal method
     this.showModal = this.showModal.bind(this);
     this.getUserReviews = this.getUserReviews.bind(this);
+    this.showLinks = this.showLinks.bind(this);
   }
   //create method to display modal
   showModal() {
     this.setState({
       showModal: !this.state.showModal
     })
-    console.log('clicked')
+  }
+
+  showLinks() {
+    this.setState({
+      showLinks: !this.state.showLinks
+    })
   }
 
   getUserReviews() {
     axios.get('userreviews')
       .then(response => {
-        console.log(response, 'line 48 mainlist.jsx')
         this.setState({
           userReviews: response.data,
           showUserReview: !this.state.showUserReview
-        }, () => {
-          console.log(this.state.userReviews)
-        })
+        }, () => {})
       })
       .catch(err => {
-        console.log('Houston, we have a problem', err)
+        console.error(err)
       })
   }
-
-  getUserReviews() {
-    axios.get('userreviews')
-      .then(response => {
-        console.log(response, 'line 48 mainlist.jsx')
-        this.setState({
-          userReviews: response.data,
-          showUserReview: !this.state.showUserReview
-        }, () => {
-          console.log(this.state.userReviews)
-        })
-      })
-      .catch(err => {
-        console.log('Houston, we have a problem', err)
-      })
-  }
-
-
 
   render() {
     return (
@@ -147,40 +134,44 @@ export default class MainList extends Component {
                   </div>
                 </div>
                 <div className="media-body">
-                  <a href="#" onClick={this.handleReviewClick.bind(this)}>
-                    <h4 className="media-heading">{this.props.item.title}</h4>
-                  </a>
-                  {this.props.item.longDescript}
-                  <div>
-                    {this.state.userReviews.map(review => {
-                      return (
-                        <div>
-                          <h3>{review.title}</h3>
-                          <dl>
-                            <dt>
-                              Rating: {review.rating}
-                            </dt>
-                          </dl>
-                          <p>{review.reviewText}</p>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-                
-                <div className="media-right">
-                  <ul className="nav nav-pills">
-                    {this.props.openLibLink
-                      ? <li role="presentation" className="enabled"><a onClick={() => window.open(this.props.openLibLink, '_blank')}>Open Library</a></li>
-                      : <div />}
-                  </ul>
-                  <div>
-                    Title: {this.props.item.ebayTitle}
-                    <a href="http://www.ebay.com/itm/Charlottes-Web-Hardcover-Book-Dust-Jacket-1952-E-B-White-/401602186871" >
-                      {this.props.item.ebayViewItemURL}
+                  <div className="col-md-8">
+                    <a href="#" onClick={this.handleReviewClick.bind(this)}>
+                      <h4 className="media-heading">{this.props.item.title}</h4>
                     </a>
+                    {this.props.item.longDescript}
+                    <div>
+                      {this.state.userReviews.map(review => {
+                        return (
+                          <div>
+                            <h3>{review.title}</h3>
+                            <dl>
+                              <dt>
+                                Rating: {review.rating}
+                              </dt>
+                            </dl>
+                            <p>{review.reviewText}</p>
+                          </div>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
+                <div className="media-right">
+                  <div className="row">
+                    <div className="col-md-8">
+                      <ul className="nav nav-pills">
+                        {this.props.openLibLink
+                          ? <li role="presentation" className="enabled"><a onClick={() => window.open(this.props.openLibLink, '_blank')}>Open Library</a></li>
+                          : <div />}
+                      </ul>
+                      <Links  ebayViewItemURL={this.props.item.ebayViewItemURL}
+                              movieTitle={this.props.item.movieTitle}
+                              movieGalleryURL={this.props.item.movieGalleryURL}
+                              movieViewItemURL={this.props.item.movieViewItemURL}
+                              onClick={this.showLinks}/>
+                    </div>
+                  </div>
+                </div>       
               </div>
             </div>
           </Card>

@@ -67,6 +67,10 @@ class App extends Component {
       ebayGalleryURL: null,
       ebayViewItemURL: null,
       ebayItemURL: null,
+      movieTitle: null,
+      movieGalleryURL: null,
+      movieViewItemURL: null,
+      movieItemURL: null
       // ebaydata: [],
       // ebay: null,
     };
@@ -208,7 +212,8 @@ class App extends Component {
                       {...props}
                       items={this.state.items}
                       // ebaydata={this.state.ebaydata}
-                      ebayTitle={this.state.ebayTitle}
+                      // ebayTitle={this.state.ebayTitle}
+
                       reviews={this.state.reviews}
                       reviewToggle={this.reviewToggle.bind(this)}
                       reviewToggled={this.state.reviewToggled}
