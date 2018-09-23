@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import Auth from '../modules/Auth';
 import UserReviewSubmit from './UserReviewSubmit.jsx';
+import Main from './Main.jsx';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -22,10 +23,10 @@ class HomePage extends React.Component {
         <div></div>    
           ) : (
             <div className="home">
-              <Main />
+              {/* <Main /> */}
               <Card className="container">
-        <CardTitle title="Bookworms"/>
-            <CardText style={{ fontSize: '16px', color: 'green' }}>You are not logged in.</CardText>
+                <CardTitle title="Bookworms"/>
+                <CardText style={{ fontSize: '16px', color: 'green' }}>You are not logged in.</CardText>
             </Card>
             </div>
           )}

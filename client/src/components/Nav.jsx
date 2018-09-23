@@ -24,6 +24,11 @@ class Nav extends React.Component {
     this.handleBookwormsSelect = () => {
       this.props.handleHomeLink();
     };
+    this.RedirectToFavorites = this.RedirectToFavorites.bind(this);
+  }
+
+  RedirectToFavorites() {
+    this.props.history.push('/favorites');
   }
 
   render() {
@@ -64,6 +69,11 @@ class Nav extends React.Component {
               </form>
 
               <ul className="nav navbar-nav navbar-right">
+              <li>
+                <Link to="/favorites">
+                  Favorites
+                </Link>
+              </li>
                 <li>
                   <Link to="">
                     Hi
