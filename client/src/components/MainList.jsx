@@ -5,6 +5,7 @@ import UserDisplay from './userReviewDisplay.jsx';
 import ModalReview from './Modal.jsx';
 import UserReviewSubmit from './UserReviewSubmit.jsx';
 import axios from 'axios';
+import Links from './links.jsx';
 
 
 export default class MainList extends Component {
@@ -17,7 +18,8 @@ export default class MainList extends Component {
       reviewInput: null,
       showModal: false,
       userReviews: [],
-      showUserReview: false
+      showUserReview: false,
+      showLinks: false
     };
 
     this.handleSearchClick = (e) => {
@@ -31,55 +33,40 @@ export default class MainList extends Component {
     };
 
     //function to link to userReviewSubmit form
-    this.linktoUserReview = (e) => {
-      e.preventDefault();
-      this.props.history('/UserReviewSubmit');
-    };
+    // this.linktoUserReview = (e) => {
+    //   e.preventDefault();
+    //   this.props.history('/UserReviewSubmit');
+    // };
     //bind this to showModal method
     this.showModal = this.showModal.bind(this);
     this.getUserReviews = this.getUserReviews.bind(this);
+    this.showLinks = this.showLinks.bind(this);
   }
   //create method to display modal
   showModal() {
     this.setState({
       showModal: !this.state.showModal
     })
-    console.log('clicked')
+  }
+
+  showLinks() {
+    this.setState({
+      showLinks: !this.state.showLinks
+    })
   }
 
   getUserReviews() {
     axios.get('userreviews')
       .then(response => {
-        console.log(response, 'line 48 mainlist.jsx')
         this.setState({
           userReviews: response.data,
           showUserReview: !this.state.showUserReview
-        }, () => {
-          console.log(this.state.userReviews)
-        })
+        }, () => {})
       })
       .catch(err => {
-        console.log('Houston, we have a problem', err)
+        console.error(err)
       })
   }
-
-  getUserReviews() {
-    axios.get('userreviews')
-      .then(response => {
-        console.log(response, 'line 48 mainlist.jsx')
-        this.setState({
-          userReviews: response.data,
-          showUserReview: !this.state.showUserReview
-        }, () => {
-          console.log(this.state.userReviews)
-        })
-      })
-      .catch(err => {
-        console.log('Houston, we have a problem', err)
-      })
-  }
-
-
 
   render() {
     return (
@@ -169,7 +156,6 @@ export default class MainList extends Component {
                     </div>
                   </div>
                 </div>
-                
                 <div className="media-right">
                   <div className="row">
                     <div className="col-md-8">
@@ -178,19 +164,14 @@ export default class MainList extends Component {
                           ? <li role="presentation" className="enabled"><a onClick={() => window.open(this.props.openLibLink, '_blank')}>Open Library</a></li>
                           : <div />}
                       </ul>
-                      <h3>Link to Buy</h3>
-                        <a href={this.props.item.ebayViewItemURL} >
-                          <div>{this.props.item.ebayViewItemURL}</div>
-                        </a>
-                      <h3>Suggested Items</h3>
-                        <div>{this.props.item.movieTitle}</div>
-                        <img src={this.props.item.movieGalleryURL}/>
-                        <a href={this.props.item.movieViewItemURL}>
-                          <div>{this.props.item.movieViewItemURL}</div>
-                        </a>
+                      <Links  ebayViewItemURL={this.props.item.ebayViewItemURL}
+                              movieTitle={this.props.item.movieTitle}
+                              movieGalleryURL={this.props.item.movieGalleryURL}
+                              movieViewItemURL={this.props.item.movieViewItemURL}
+                              onClick={this.showLinks}/>
                     </div>
                   </div>
-                </div>
+                </div>       
               </div>
             </div>
           </Card>
