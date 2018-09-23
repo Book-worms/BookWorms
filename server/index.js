@@ -203,8 +203,10 @@ app.get('/googleData', (req, response) => {
       const coverImage = info.imageLinks.thumbnail; // url to large format thumbnail
       const ISBN10 = info.industryIdentifiers[0].identifier;
       let ISBN13;
-      let ebaydata = null;
-      let ebaymoviedata = null;
+      let ebayTitle = null;
+      let ebayGalleryURL = null;
+      let ebayViewItemURL = null;
+      let ebayItemURL = null;
 
 
       ebayHelpers.ebayPost(req.query.title).then(({ data }) => {
@@ -213,10 +215,17 @@ app.get('/googleData', (req, response) => {
           ebayHelpers.getItemInformation(data),
           ebayHelpers.getItemUrl(data),
         );
-
-        ebaydata = Object.values(fullObject);
-        console.log(ebaydata);
-        console.log(Object.keys(fullObject));
+        ebayTitle = fullObject.title;
+        ebayGalleryURL = fullObject.galleryURL;
+        ebayViewItemURL = fullObject.viewItemURL,
+        ebayItemURL = fullObject.itemURL;
+        console.log(ebayTitle)
+        console.log(ebayGalleryURL)
+        console.log(ebayViewItemURL)
+        console.log(ebayItemURL)
+        // ebaydata = Object.values(fullObject);
+        // console.log(ebaydata);
+        // console.log(Object.keys(fullObject));
       }).catch((error) => {
         if (error) {
           console.log(error);
@@ -281,8 +290,11 @@ app.get('/googleData', (req, response) => {
                 userRating: 2.75,
                 aggregateRating,
                 ISBN13,
-                ebaydata,
-                ebaymoviedata,
+                ebayTitle,
+                ebayGalleryURL,
+                ebayViewItemURL,
+                ebayItemURL
+                // ebaydata,
               });
               // console.log(ebaydata);
             });
@@ -320,8 +332,6 @@ app.get('/goodreads', (req, res) => {
     })
     .catch(err => console.log('error line 273'));
 });
-
-
 // TEAM AMERICAIN IDOL WORK STARTS HERE //
 
 //post request to server for userReviews
@@ -366,21 +376,3 @@ app.get('/userreviews', (req, res) => {
     }
   })
 })
-
-
-// app.get('/ebaybay',
-//   (req, res) => {
-//     const keyWordToEncode = req.body;
-//     console.log(keyWordToEncode);
-//     const keyWordEncoded = ebayHelpers.createKeyWordForSearch(keyWordToEncode);
-//     console.log(keyWordEncoded);
-
-//     ebayHelpers.ebayPost(keyWordEncoded,
-//       (err, res) => {
-//         if (err) {
-//           console.log('ebayhelpers erro');
-//         } else {
-//           console.log('ebayhelpers success', res);
-//         }
-//       });
-//   });
