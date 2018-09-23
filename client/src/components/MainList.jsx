@@ -9,8 +9,6 @@ import axios from 'axios';
 
 export default class MainList extends Component {
   constructor(props) {
-    // console.log(props, 'MainList.jsx')
-    // console.log('test');
     super(props);
     // console.log(props, 'mainlist.jsx');
 
@@ -65,13 +63,31 @@ export default class MainList extends Component {
       })
   }
 
+  getUserReviews() {
+    axios.get('userreviews')
+      .then(response => {
+        console.log(response, 'line 48 mainlist.jsx')
+        this.setState({
+          userReviews: response.data,
+          showUserReview: !this.state.showUserReview
+        }, () => {
+          console.log(this.state.userReviews)
+        })
+      })
+      .catch(err => {
+        console.log('Houston, we have a problem', err)
+      })
+  }
+
 
 
   render() {
     return (
       <div>
         <div className="container">
-          <ModalReview title={this.props.item.title} onClose={this.showModal} showModal={this.state.showModal} />
+          <ModalReview title={this.props.item.title}
+            onClose={this.showModal}
+            showModal={this.state.showModal} />
           <Card>
             <div className="book-card">
               <div className="media">
@@ -80,74 +96,65 @@ export default class MainList extends Component {
                     <img className="media-object" src={this.props.item.coverImage} alt="book cover" />
                   </a>
                   <div className="btn-group-vertical" role="group" aria-label="...">
-                    <button type="button"
-                      className="btn-group btn btn-primary btn-sm"
+                    <button className="btn-group btn btn-primary btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      Bookworms {' '}<span className="badge">{this.props.item.aggregateRating}</span>
+                      BookWorms {' '}<span className="badge">{this.props.ite.aggregateRating}</span>
                     </button>
-                    <button type="button"
-                      className="btn-group btn btn-info btn-sm"
+                    <button className="btn-group btn btn-info btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      Google Books {' '}<span className="badge">{this.props.item.rating}</span>
+                      Google Books {' '}<span className="badge">{this.props.ite.rating}</span>
                     </button>
-                    <button type="button"
-                      className="btn-group btn btn-info btn-sm"
+                    <button className="btn-group btn btn-info btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      Library Thing {' '}<span className="badge">
-                        {this.props.item.libThingRating}</span>
+                      Library Things {' '}<span className="badge">{this.props.ite.libThingRating}</span>
                     </button>
-                    <button type="button"
-                      className="btn-group btn btn-info btn-sm"
+                    <button className="btn-group btn btn-info btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      GoodReads {' '}<span className="badge">{this.props.item.gReadsRating}</span>
+                      GoodReads {' '}<span className="badge">{this.props.ite.gReadsRating}</span>
                     </button>
-                    <button type="button"
-                      className="btn-group btn btn-info btn-sm"
+                    <button className="btn-group btn btn-info btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      User Rating {' '}<span className="badge">{this.props.item.userRating}</span>
+                      User Rating {' '}<span className="badge">{this.props.ite.userRating}</span>
                     </button>
-                    <button type="button"
-                      className="btn-group btn btn-success btn-sm"
+                    <button className="btn-group btn btn-success btn-sm"
                       role="group"
                       aria-label="..."
-                      value="show modal"
-                      // onClick={this.linktoUserReview.bind(this)}
-                      onClick={this.showModal}>Write Review</button>
-                    <button type="button"
-                      className="btn-group btn btn-primary btn-sm"
+                      onClick={this.showModal}>
+                      Write Review
+                    </button>
+                    <button className="btn-group btn btn-primary btn-sm"
                       role="group"
                       aria-label="..."
-                      onClick={this.getUserReviews}>User Reviews</button>
-                    <button type="button"
-                      className="btn-group btn btn-danger btn-sm"
+                      onClick={this.getUserReviews}>
+                      User Reviews
+                    </button>
+                    <button className="btn-group btn btn-danger btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
-                      Review
-                      {/* <span className="glyphicon glyphicon-star-empty" aria-hidden="true"></span> */}
+                      Review {' '}<span className="badge">{this.props.ite.aggregateRating}</span>
                     </button>
                   </div>
                 </div>
                 <div className="media-body">
-                  <a href="#" onClick={this.handleSearchClick.bind(this)}>
+                  <a href="#" onClick={this.handleReviewClick.bind(this)}>
                     <h4 className="media-heading">{this.props.item.title}</h4>
                   </a>
                   {this.props.item.longDescript}
                   <div>
                     {this.state.userReviews.map(review => {
-                      console.log(review)
                       return (
-                        <div >
+                        <div>
                           <h3>{review.title}</h3>
                           <dl>
                             <dt>
@@ -155,16 +162,16 @@ export default class MainList extends Component {
                             </dt>
                           </dl>
                           <p>{review.reviewText}</p>
-                        </div>)
+                        </div>
+                      )
                     })}
                   </div>
                 </div>
                 <div>
-                  Title : {this.props.item.ebaydata}
+                  Title: {this.props.item.ebaydata}
                 </div>
                 <div className="media-right">
                   <ul className="nav nav-pills">
-
                     {this.props.openLibLink
                       ? <li role="presentation" className="enabled"><a onClick={() => window.open(this.props.openLibLink, '_blank')}>Open Library</a></li>
                       : <div />}
@@ -173,10 +180,9 @@ export default class MainList extends Component {
               </div>
             </div>
           </Card>
-
         </div>
       </div>
-    );
+    )
   }
 }
 

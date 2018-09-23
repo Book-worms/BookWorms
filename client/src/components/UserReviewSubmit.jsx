@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import UserDisplay from './userReviewDisplay.jsx';
+import ReactStars from 'react-stars';
 
 export default class UserReviewSubmit extends Component {
   constructor(props) {
@@ -54,11 +55,14 @@ export default class UserReviewSubmit extends Component {
     }, () => {})
   }
   
-  updateRating(e) {
-    e.preventDefault();
+  updateRating(nextValue, prevValue, name) {
+    console.log(nextValue)
+    // nextValue.preventDefault();
     this.setState({
-      rating: e.target.id
-    }, () => {})
+      rating: nextValue
+    }, () => {
+      console.log(this.state.rating)
+    })
   };
 
   render () {
@@ -69,16 +73,13 @@ export default class UserReviewSubmit extends Component {
             <form role="form" onSubmit={this.handleReviewSubmit}>
               <div className="form-group">
                 <div className="form-check form-check-inline">
-                  <input className="form-check-input" type="checkbox" id="1" onChange={this.updateRating}/>
-                  <label className="form-check-label" htmlFor="inlineCheckbox1">1</label>
-                  <input className="form-check-input" type="checkbox" id="2" onChange={this.updateRating}/>
-                  <label className="form-check-label" htmlFor="inlineCheckbox1">2</label>
-                  <input className="form-check-input" type="checkbox" id="3" onChange={this.updateRating}/>
-                  <label className="form-check-label" htmlFor="inlineCheckbox1">3</label>
-                  <input className="form-check-input" type="checkbox" id="4" onChange={this.updateRating}/>
-                  <label className="form-check-label" htmlFor="inlineCheckbox1">4</label>
-                  <input className="form-check-input" type="checkbox" id="5" onChange={this.updateRating}/>
-                  <label className="form-check-label" htmlFor="inlineCheckbox1">5</label>
+                  <ReactStars
+                    count={5}
+                    onChange={this.updateRating}
+                    size={18}
+                    half={true}
+                    value={this.state.rating}
+                    color2={'#ffd700'} />
                 </div>
                 <div>
                 <input  type="text" 
@@ -93,6 +94,7 @@ export default class UserReviewSubmit extends Component {
                             style={{width: '400px'}}/>
                   <button type="submit" 
                           className="btn btn-success"
+                          
                           >Submit Review</button>
                 </div>
               </div>
