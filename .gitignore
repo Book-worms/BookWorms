@@ -26,6 +26,7 @@ config.js
 
 # Config
 config.js
+.env
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
@@ -33,3 +34,4 @@ config.js
 node_modules/
 bower_components/
 package-lock.json
+client/dist/bundle.js

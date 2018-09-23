@@ -1,18 +1,24 @@
-
-
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const MONGOLINK = require('../config.js');
+
+// const MONGOLINK = require('../config').MONGOLINK;
+
 const config = require('../config');
 
-mongoose.connect(MONGOLINK.MONGOLINK, { useMongoClient: true });
+
+// mongoose.connect(MONGOLINK, { useMongoClient: true });
+mongoose.connect(process.env.MLAB);
+
 // plug in the promise library:
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 
+
 db.on('error', () => {
+  // console.log('here', MONGOLINK);
   console.log('mongoose connection error');
 });
 
@@ -29,11 +35,42 @@ const User = mongoose.model('User', userSchema);
 
 const reviewSchema = mongoose.Schema({
   title: String,
-  username: String,
+  bookTitle: String,
   reviewText: String,
   reviewRating: Number,
 });
 
+//create UserReviewSchema
+const userReviewSchema = mongoose.Schema({
+  title: String,
+  bookTitle: String,
+  reviewText: String,
+  rating: Number,
+  created_at: Date
+})
+
+const UserReview = mongoose.model('UserReview', userReviewSchema);
+
+const saveUserReview = (reviewObject, response) => {
+  mongoose.connection.db.dropCollection('userreviews')
+  const newUserReview = new UserReview(reviewObject);
+  
+  newUserReview.save(err => {
+    if (err) {
+      console.log(`error saving review into database saveUserReview function ${err}`)
+    } else {
+      console.log('successfully saves review to database')
+      response.status(201);
+      response.end();
+    }
+  })
+}
+//add function to query database for userReviews to display on DOM
+// const query = UserReview.find();
+
+const findUserReviews = callback => {
+  UserReview.find().limit(3).sort({'created_at': 1}).select('id title bookTitle reviewText rating').exec(callback);
+}
 const Review = mongoose.model('Review', reviewSchema);
 
 const saveReview = (title, username, reviewText, reviewRating, cb) => {
@@ -51,6 +88,7 @@ const saveReview = (title, username, reviewText, reviewRating, cb) => {
     }
   });
 };
+
 
 const allReviews = (cb) => {
   Review.find({}, (err, books) => {
@@ -137,8 +175,9 @@ const saveUser = (name, pass) => {
   });
   user.save((error) => {
     if (error) {
+      console.log('ERROR SAVING USER');
       console.error(error);
-    } 
+    }
   });
 };
 const findUser = (username, callback) => {
@@ -197,6 +236,14 @@ const passportValidate = (un, pw) => {
     });
   });
 };
+
+const booksquirmSchema = mongoose.Schema({
+
+});
+
+const booksquirm = {
+
+};
 module.exports = {
   comparePassword,
   findUser,
@@ -205,6 +252,8 @@ module.exports = {
   passportValidate,
   allBooks,
   addRating,
-  saveReview,
+  saveUserReview,
+  findUserReviews,
+  // saveReview,
   allReviews,
 };
