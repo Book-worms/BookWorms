@@ -196,7 +196,9 @@ app.get('/googleData', (req, response) => {
   helpers.googleBooks(query)
     .then((res) => {
       const info = res.data.items[0].volumeInfo;
+      console.log(info)
       const title = info.title;
+      const author = info.authors[0];
       const longDescript = info.description; // full description
       const genres = info.categories; // array of genre strings, often 1 element
       const rating = +info.averageRating || 2.75;
@@ -297,7 +299,8 @@ app.get('/googleData', (req, response) => {
                 movieTitle,
                 movieGalleryURL,
                 movieViewItemURL,
-                movieItemURL
+                movieItemURL,
+                author
                 // ebaydata,
               });
               // console.log(ebaydata);
@@ -380,3 +383,7 @@ app.get('/userreviews', (req, res) => {
     }
   })
 })
+
+app.post('favorites', (req, res) => {
+
+}) 

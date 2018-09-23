@@ -6,6 +6,7 @@ import ModalReview from './Modal.jsx';
 import UserReviewSubmit from './UserReviewSubmit.jsx';
 import axios from 'axios';
 import Links from './links.jsx';
+import Favorites from './favorites.jsx';
 
 
 export default class MainList extends Component {
@@ -19,7 +20,8 @@ export default class MainList extends Component {
       showModal: false,
       userReviews: [],
       showUserReview: false,
-      showLinks: false
+      showLinks: false,
+      showFavs: false
     };
 
     this.handleSearchClick = (e) => {
@@ -32,15 +34,11 @@ export default class MainList extends Component {
       this.props.reviewToggle(this.props.item);
     };
 
-    //function to link to userReviewSubmit form
-    // this.linktoUserReview = (e) => {
-    //   e.preventDefault();
-    //   this.props.history('/UserReviewSubmit');
-    // };
-    //bind this to showModal method
+    //bind this to showModal, getUserReviews, showLinks, and showFavs methods
     this.showModal = this.showModal.bind(this);
     this.getUserReviews = this.getUserReviews.bind(this);
     this.showLinks = this.showLinks.bind(this);
+    this.showFavorites = this.showFavorites.bind(this);
   }
   //create method to display modal
   showModal() {
@@ -52,6 +50,12 @@ export default class MainList extends Component {
   showLinks() {
     this.setState({
       showLinks: !this.state.showLinks
+    })
+  }
+
+  showFavorites() {
+    this.setState({
+      showFavs: !this.state.showFavs
     })
   }
 
@@ -88,6 +92,12 @@ export default class MainList extends Component {
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
                       BookWorms {' '}<span className="badge">{this.props.item.aggregateRating}</span>
+                    </button>
+                    <button className="btn-group btn btn-info btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.showFavorites}>
+                      Favorites
                     </button>
                     <button className="btn-group btn btn-info btn-sm"
                       role="group"
@@ -138,7 +148,14 @@ export default class MainList extends Component {
                     <a href="#" onClick={this.handleReviewClick.bind(this)}>
                       <h4 className="media-heading">{this.props.item.title}</h4>
                     </a>
+                      <h5>{this.props.item.author}</h5>
                     {this.props.item.longDescript}
+                    <div>
+                      <Favorites  title={this.props.item.title}
+                                  image={this.props.item.coverImage}
+                                  onClick={this.showFavorites}
+                                  showFavs={this.state.showFavs}/>
+                    </div>
                     <div>
                       {this.state.userReviews.map(review => {
                         return (

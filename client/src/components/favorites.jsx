@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
-export default class Favorite extends Component {
+export default class Favorites extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-12">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="row">
+              <div className="col-md-12">
               <h3>Favorites</h3>
-                <table class="table">
+                <table className="table">
                   <thead>
                     <tr>
                       <th>
@@ -46,7 +46,7 @@ export default class Favorite extends Component {
                         Default
 								</td>
                     </tr>
-                    <tr class="table-active">
+                    <tr className="table-active">
                       <td>
                         1
 								</td>
@@ -60,7 +60,7 @@ export default class Favorite extends Component {
                         Approved
 								</td>
                     </tr>
-                    <tr class="table-success">
+                    <tr className="table-success">
                       <td>
                         2
 								</td>
@@ -74,7 +74,7 @@ export default class Favorite extends Component {
                         Declined
 								</td>
                     </tr>
-                    <tr class="table-warning">
+                    <tr className="table-warning">
                       <td>
                         3
 								</td>
@@ -88,7 +88,7 @@ export default class Favorite extends Component {
                         Pending
 								</td>
                     </tr>
-                    <tr class="table-danger">
+                    <tr className="table-danger">
                       <td>
                         4
 								</td>

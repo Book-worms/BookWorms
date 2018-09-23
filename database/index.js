@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 // const MONGOLINK = require('../config').MONGOLINK;
 
-const config = require('../config');
+// const config = require('../config');
 
 
 // mongoose.connect(MONGOLINK, { useMongoClient: true });
