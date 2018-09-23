@@ -57,7 +57,7 @@ const saveUserReview = (reviewObject, response) => {
   
   newUserReview.save(err => {
     if (err) {
-      console.log(`error saving review into database saveUserReview function ${err}`)
+      console.error(err);
     } else {
       console.log('successfully saves review to database')
       response.status(201);
@@ -69,8 +69,38 @@ const saveUserReview = (reviewObject, response) => {
 // const query = UserReview.find();
 
 const findUserReviews = callback => {
-  UserReview.find().limit(3).sort({'created_at': 1}).select('id title bookTitle reviewText rating').exec(callback);
+  UserReview.find().limit(3).select('id title bookTitle reviewText rating').exec(callback);
 }
+
+//create schema to save favorites to the database
+const favoritesSchema = mongoose.Schema({
+  title: String,
+  longDescript: String,
+  coverImage: String
+})
+
+const Favorites = mongoose.model('Favorites', favoritesSchema);
+
+//create function to save favorites to database
+const saveFavorites = (favoriteObject, response) => {
+  const newFavorite = new Favorites(favoriteObject);
+
+  newFavorite.save(err => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('successfully saved favorite to database');
+      response.status(201);
+      response.end();
+    }
+  })
+}
+
+//create function to retrieve all favorites for user
+const findFavorites = callback => {
+  Favorites.find().select('title longDescript coverImage').exec(callback);
+}
+
 const Review = mongoose.model('Review', reviewSchema);
 
 const saveReview = (title, username, reviewText, reviewRating, cb) => {
@@ -254,6 +284,8 @@ module.exports = {
   addRating,
   saveUserReview,
   findUserReviews,
+  saveFavorites,
+  findFavorites,
   // saveReview,
-  allReviews,
+  allReviews
 };
