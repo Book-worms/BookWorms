@@ -23,6 +23,7 @@ import SignUpPage from './containers/SignUpPage.jsx';
 import Main from './components/Main.jsx';
 import Auth from './modules/Auth';
 import UserReviewSubmit from './components/userReviewSubmit.jsx';
+import Favorites from './components/favorites.jsx';
 
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
@@ -55,7 +56,6 @@ const PropsRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       items: [],
       reviews: [],
@@ -237,6 +237,7 @@ class App extends Component {
             <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             <LoggedOutRoute path="/signup" component={SignUpPage} />
             <Route path="/logout" component={Logout} />
+            <Route path="/favorites" component={Favorites} />
           </div>
 
         </Router>
