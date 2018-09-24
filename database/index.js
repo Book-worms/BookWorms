@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 // const MONGOLINK = require('../config').MONGOLINK;
 
-const config = require('../config');
+// const config = require('../config');
 
 
 // mongoose.connect(MONGOLINK, { useMongoClient: true });
@@ -75,8 +75,9 @@ const findUserReviews = callback => {
 //create schema to save favorites to the database
 const favoritesSchema = mongoose.Schema({
   title: String,
-  longDescript: String,
-  coverImage: String
+  author: String,
+  image: String,
+  description: String
 })
 
 const Favorites = mongoose.model('Favorites', favoritesSchema);
@@ -98,7 +99,7 @@ const saveFavorites = (favoriteObject, response) => {
 
 //create function to retrieve all favorites for user
 const findFavorites = callback => {
-  Favorites.find().select('title longDescript coverImage').exec(callback);
+  Favorites.find().select('title author longDescript coverImage').exec(callback);
 }
 
 const Review = mongoose.model('Review', reviewSchema);

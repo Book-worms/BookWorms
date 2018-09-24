@@ -6,12 +6,13 @@ import ModalReview from './Modal.jsx';
 import UserReviewSubmit from './UserReviewSubmit.jsx';
 import axios from 'axios';
 import Links from './links.jsx';
+import Favorites from './favorites.jsx';
 
 
 export default class MainList extends Component {
   constructor(props) {
     super(props);
-    // console.log(props.item.ebayTitle, 'mainlist.jsx');
+    console.log(props.item, 'mainlist.jsx');
 
 
     this.state = {
@@ -19,7 +20,9 @@ export default class MainList extends Component {
       showModal: false,
       userReviews: [],
       showUserReview: false,
-      showLinks: false
+      showLinks: false,
+      favs: [],
+      showFavs: false
     };
 
     this.handleSearchClick = (e) => {
@@ -32,15 +35,13 @@ export default class MainList extends Component {
       this.props.reviewToggle(this.props.item);
     };
 
-    //function to link to userReviewSubmit form
-    // this.linktoUserReview = (e) => {
-    //   e.preventDefault();
-    //   this.props.history('/UserReviewSubmit');
-    // };
-    //bind this to showModal method
+    //bind this to showModal, getUserReviews, showLinks, and showFavs methods
     this.showModal = this.showModal.bind(this);
     this.getUserReviews = this.getUserReviews.bind(this);
     this.showLinks = this.showLinks.bind(this);
+    this.showFavorites = this.showFavorites.bind(this);
+    this.addToFavorites = this.addToFavorites.bind(this);
+    this.getFavorites = this.getFavorites.bind(this);
   }
   //create method to display modal
   showModal() {
@@ -55,6 +56,12 @@ export default class MainList extends Component {
     })
   }
 
+  showFavorites() {
+    this.setState({
+      showFavs: !this.state.showFavs
+    })
+  }
+
   getUserReviews() {
     axios.get('userreviews')
       .then(response => {
@@ -62,6 +69,40 @@ export default class MainList extends Component {
           userReviews: response.data,
           showUserReview: !this.state.showUserReview
         }, () => {})
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  addToFavorites(e) {
+    e.preventDefault();
+    const params = {
+      title: this.props.item.title,
+      author: this.props.item.author,
+      image: this.props.item.coverImage,
+      description: this.props.item.longDescript
+    }
+    console.log(params, 'addToFavorites')
+    axios.post('/', params)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  getFavorites() {
+    axios.get('/favorites')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          favs: response.data,
+          showFavs: !this.state.showFavs
+        }, () => {
+          console.log('clicked')
+        })
       })
       .catch(err => {
         console.error(err)
@@ -88,6 +129,18 @@ export default class MainList extends Component {
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
                       BookWorms {' '}<span className="badge">{this.props.item.aggregateRating}</span>
+                    </button>
+                    <button className="btn-group btn btn-primary btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.addToFavorites}>
+                      Add to Favorites
+                    </button>
+                    <button className="btn-group btn btn-success btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.getFavorites}>
+                      Favorites
                     </button>
                     <button className="btn-group btn btn-info btn-sm"
                       role="group"
@@ -138,7 +191,23 @@ export default class MainList extends Component {
                     <a href="#" onClick={this.handleReviewClick.bind(this)}>
                       <h4 className="media-heading">{this.props.item.title}</h4>
                     </a>
-                    {this.props.item.longDescript}
+                      <h5>{this.props.item.author}</h5>
+                      {this.props.item.longDescript}
+                    <div>
+                      {this.state.favs.map(fav => {
+                        console.log(fav, 'mainlist.jsx 198')
+                        return (<Favorites  key={fav.id}
+                                            title={fav.title}
+                                            author={fav.author}
+                                            image={fav.image}
+                                            description={fav.description}/>)
+                      })}
+                      {/* <Favorites  title={this.state.favs}
+                                  author={this.props.item.author}
+                                  image={this.props.item.coverImage}
+                                  onClick={this.showFavorites}
+                                  showFavs={this.state.showFavs}/> */}
+                    </div>
                     <div>
                       {this.state.userReviews.map(review => {
                         return (
