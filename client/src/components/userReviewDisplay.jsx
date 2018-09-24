@@ -9,7 +9,6 @@ export default class UserDisplay extends Component {
     this.state = {
       reviews: []
     }
-    // console.log(props, 'user display')
   }
   
   render() {
