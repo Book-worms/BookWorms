@@ -7,7 +7,6 @@ import Main from './Main.jsx';
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
   }
 
   componentDidMount() {

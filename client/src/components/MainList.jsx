@@ -12,7 +12,7 @@ import Favorites from './favorites.jsx';
 export default class MainList extends Component {
   constructor(props) {
     super(props);
-    // console.log(props.item.ebayTitle, 'mainlist.jsx');
+    console.log(props.item, 'mainlist.jsx');
 
 
     this.state = {
@@ -21,6 +21,7 @@ export default class MainList extends Component {
       userReviews: [],
       showUserReview: false,
       showLinks: false,
+      favs: [],
       showFavs: false
     };
 
@@ -40,6 +41,7 @@ export default class MainList extends Component {
     this.showLinks = this.showLinks.bind(this);
     this.showFavorites = this.showFavorites.bind(this);
     this.addToFavorites = this.addToFavorites.bind(this);
+    this.getFavorites = this.getFavorites.bind(this);
   }
   //create method to display modal
   showModal() {
@@ -81,13 +83,29 @@ export default class MainList extends Component {
       image: this.props.item.coverImage,
       description: this.props.item.longDescript
     }
-
+    console.log(params, 'addToFavorites')
     axios.post('/', params)
       .then(response => {
-        console.log(response, 'favorites post')
+        console.log(response)
       })
       .catch(err => {
-        console.log(err, 'you done messed up son')
+        console.error(err)
+      })
+  }
+
+  getFavorites() {
+    axios.get('/favorites')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          favs: response.data,
+          showFavs: !this.state.showFavs
+        }, () => {
+          console.log('clicked')
+        })
+      })
+      .catch(err => {
+        console.error(err)
       })
   }
 
@@ -112,16 +130,16 @@ export default class MainList extends Component {
                       onClick={this.handleReviewClick.bind(this)}>
                       BookWorms {' '}<span className="badge">{this.props.item.aggregateRating}</span>
                     </button>
-                    <button className="btn-group btn btn-success btn-sm"
+                    <button className="btn-group btn btn-primary btn-sm"
                       role="group"
                       aria-label="..."
                       onClick={this.addToFavorites}>
                       Add to Favorites
                     </button>
-                    <button className="btn-group btn btn-info btn-sm"
+                    <button className="btn-group btn btn-success btn-sm"
                       role="group"
                       aria-label="..."
-                      onClick={this.showFavorites}>
+                      onClick={this.getFavorites}>
                       Favorites
                     </button>
                     <button className="btn-group btn btn-info btn-sm"
@@ -176,11 +194,19 @@ export default class MainList extends Component {
                       <h5>{this.props.item.author}</h5>
                       {this.props.item.longDescript}
                     <div>
-                      <Favorites  title={this.props.item.title}
+                      {this.state.favs.map(fav => {
+                        console.log(fav, 'mainlist.jsx 198')
+                        return (<Favorites  key={fav.id}
+                                            title={fav.title}
+                                            author={fav.author}
+                                            image={fav.image}
+                                            description={fav.description}/>)
+                      })}
+                      {/* <Favorites  title={this.state.favs}
                                   author={this.props.item.author}
                                   image={this.props.item.coverImage}
                                   onClick={this.showFavorites}
-                                  showFavs={this.state.showFavs}/>
+                                  showFavs={this.state.showFavs}/> */}
                     </div>
                     <div>
                       {this.state.userReviews.map(review => {

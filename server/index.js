@@ -402,4 +402,22 @@ app.post('/', (req, res) => {
   res.end();
 })
 
-app.get('/')
+app.get('/favorites', (req, res) => {
+  db.findFavorites((err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const displayedFavorites = data.map(fav => {
+        console.log(fav, 'index.js')
+        return {
+          id: fav.id,
+          title: fav.title,
+          author: fav.author,
+          image: fav.image,
+          description: fav.description
+        }
+      })
+      res.send(displayedFavorites);
+    }
+  })
+})

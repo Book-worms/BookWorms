@@ -11,16 +11,7 @@ export default class UserDisplay extends Component {
     }
     // console.log(props, 'user display')
   }
-
-  // componentDidMount() {
-  //   axios.get('/userreviews')
-  //     .then(response => {
-  //       this.setState({
-  //         reviews: response.data
-  //       })
-  //       console.log(this.state.reviews.title)
-  //     })
-  // }
+  
   render() {
     return (
       <div >
