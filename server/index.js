@@ -196,7 +196,7 @@ app.get('/googleData', (req, response) => {
   helpers.googleBooks(query)
     .then((res) => {
       const info = res.data.items[0].volumeInfo;
-      console.log(info)
+      // console.log(info)
       const title = info.title;
       const author = info.authors[0];
       const longDescript = info.description; // full description
@@ -367,9 +367,9 @@ app.get('/userreviews', (req, res) => {
     if (err) {
       console.error(err);
     } else {
-      console.log(data, 'data')
+      // console.log(data, 'data')
       const displayedReviewData = data.map(review => {
-        console.log(review);
+        // console.log(review);
         return {
           id: review.id,
           title: review.title,
@@ -384,6 +384,22 @@ app.get('/userreviews', (req, res) => {
   })
 })
 
-app.post('favorites', (req, res) => {
+app.post('/', (req, res) => {
+  console.log(req.body, 'server/index.js')
+  const title = req.body.title;
+  const author = req.body.author;
+  const image = req.body.image;
+  const description = req.body.description;
 
-}) 
+  const newFav = {
+    title,
+    author,
+    image,
+    description
+  }
+  db.saveFavorites(newFav, res);
+  res.sendStatus(201);
+  res.end();
+})
+
+app.get('/')

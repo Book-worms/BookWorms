@@ -39,6 +39,7 @@ export default class MainList extends Component {
     this.getUserReviews = this.getUserReviews.bind(this);
     this.showLinks = this.showLinks.bind(this);
     this.showFavorites = this.showFavorites.bind(this);
+    this.addToFavorites = this.addToFavorites.bind(this);
   }
   //create method to display modal
   showModal() {
@@ -72,6 +73,24 @@ export default class MainList extends Component {
       })
   }
 
+  addToFavorites(e) {
+    e.preventDefault();
+    const params = {
+      title: this.props.item.title,
+      author: this.props.item.author,
+      image: this.props.item.coverImage,
+      description: this.props.item.longDescript
+    }
+
+    axios.post('/', params)
+      .then(response => {
+        console.log(response, 'favorites post')
+      })
+      .catch(err => {
+        console.log(err, 'you done messed up son')
+      })
+  }
+
   render() {
     return (
       <div>
@@ -92,6 +111,12 @@ export default class MainList extends Component {
                       aria-label="..."
                       onClick={this.handleReviewClick.bind(this)}>
                       BookWorms {' '}<span className="badge">{this.props.item.aggregateRating}</span>
+                    </button>
+                    <button className="btn-group btn btn-success btn-sm"
+                      role="group"
+                      aria-label="..."
+                      onClick={this.addToFavorites}>
+                      Add to Favorites
                     </button>
                     <button className="btn-group btn btn-info btn-sm"
                       role="group"
@@ -149,9 +174,10 @@ export default class MainList extends Component {
                       <h4 className="media-heading">{this.props.item.title}</h4>
                     </a>
                       <h5>{this.props.item.author}</h5>
-                    {this.props.item.longDescript}
+                      {this.props.item.longDescript}
                     <div>
                       <Favorites  title={this.props.item.title}
+                                  author={this.props.item.author}
                                   image={this.props.item.coverImage}
                                   onClick={this.showFavorites}
                                   showFavs={this.state.showFavs}/>
