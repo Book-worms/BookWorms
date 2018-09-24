@@ -97,7 +97,6 @@ class App extends Component {
         .then((response) => {
           const items = [response.data];
           const isbn = response.data.ISBN13;
-          // console.log(this.props.item, 'index.jsx');
           axios.get('/openLibLink', {
             params: { isbn },
           })

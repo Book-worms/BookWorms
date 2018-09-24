@@ -39,7 +39,6 @@ export default class MainList extends Component {
     this.showModal = this.showModal.bind(this);
     this.getUserReviews = this.getUserReviews.bind(this);
     this.showLinks = this.showLinks.bind(this);
-    this.showFavorites = this.showFavorites.bind(this);
     this.addToFavorites = this.addToFavorites.bind(this);
     this.getFavorites = this.getFavorites.bind(this);
   }
@@ -53,12 +52,6 @@ export default class MainList extends Component {
   showLinks() {
     this.setState({
       showLinks: !this.state.showLinks
-    })
-  }
-
-  showFavorites() {
-    this.setState({
-      showFavs: !this.state.showFavs
     })
   }
 
@@ -202,11 +195,6 @@ export default class MainList extends Component {
                                             image={fav.image}
                                             description={fav.description}/>)
                       })}
-                      {/* <Favorites  title={this.state.favs}
-                                  author={this.props.item.author}
-                                  image={this.props.item.coverImage}
-                                  onClick={this.showFavorites}
-                                  showFavs={this.state.showFavs}/> */}
                     </div>
                     <div>
                       {this.state.userReviews.map(review => {
